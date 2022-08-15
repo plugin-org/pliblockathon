@@ -47,7 +47,7 @@ Note: All dApps must be deployed on the XDC Network Mainnet.
 
 ### Judgement Criteria
 * Should leverage Plugin Oracle Service in their Dapp(Decentralized Application)
-* Should upload their repository in plugin-org/BlockFest-22 - Sub-folder
+* Should upload their repository in plugin-org/pliblockathon - Sub-folder
 * Should provide clear read-me file, on how to execute the same the repository
 * Should provide valid "XDCPay" Pubic wallet address to receive the bounty / prize
 * Idea should be innovative
