@@ -32,7 +32,6 @@ Plugin a Decentralized Oracle Network is conducting this hackathon to provide a 
 
 ### Sample Repository(How to setup one Dapp - Quickly)
 * [**Build a Weather Node dApp with Plugin Decentralized Oracle **](https://github.com/GoPlugin/plugin-weather-node-adapter)
-* [**Build a NFT Node dApp with Plugin Decentralized Oracle **](https://github.com/GoPlugin/plugin-weather-node-adapter)
 
 ### Domains to focus
 Build a working dApp on the XDC Network within one of the categories listed:
