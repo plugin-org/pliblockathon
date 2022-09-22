@@ -1,0 +1,438 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "vehicleId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "insuranceId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address payable",
+				"name": "insuranceBuyer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "endDate",
+				"type": "uint256"
+			}
+		],
+		"name": "buyInsuranceEvent",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "InsuranceDetail",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "insuranceHolder",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vehicleId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "insuranceId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endDate",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum EcoDrive.Status",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "addToBalance",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_country",
+				"type": "string"
+			}
+		],
+		"name": "addUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_vehicleRegNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_obdId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_vehicleType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_yearOfManufacture",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_fuelType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_chasisNumber",
+				"type": "string"
+			}
+		],
+		"name": "addVehicle",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_period",
+				"type": "uint256"
+			}
+		],
+		"name": "buyInsurance",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "contractOwner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_insuranceId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_avgSpeed",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_kmDriven",
+				"type": "uint256"
+			}
+		],
+		"name": "getReward",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "insuranceBuyer",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "insuranceId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "insuranceStatus",
+		"outputs": [
+			{
+				"internalType": "enum EcoDrive.Status",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "liquidityPool",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_avgSpeed",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_kmDriven",
+				"type": "uint256"
+			}
+		],
+		"name": "rewardCalculation",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userDetail",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "userAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "userId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "country",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "userId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "vehicleId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "vehiclesDetail",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "vechicleOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vehicleId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "obdId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "vehicleRegNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "vehicleType",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "yearOfManufacture",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "fuelType",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "chasisNumber",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdrawAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "withdrawAmount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	}
+]
