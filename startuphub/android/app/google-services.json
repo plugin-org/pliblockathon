@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312081612131",
+    "project_id": "startup-hub5683",
+    "storage_bucket": "startup-hub5683.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312081612131:android:d6eee04e65983e87612756",
+        "android_client_info": {
+          "package_name": "com.primemovers.startup_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312081612131-ipk1q2sovkp9fqp9vivmadu8k0stkk2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL3FAB1X09_BMLybeWmkHFX50tFtzHiIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312081612131-ipk1q2sovkp9fqp9vivmadu8k0stkk2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
