@@ -1,0 +1,74 @@
+@import "../general.scss";
+.thanks-card.show {
+  opacity: 1;
+  z-index: 4;
+}
+.thanks-card {
+  @include displayF(column, center, center);
+  @include modal(fixed, 80%, 50%, 50%); // position, width, top, left
+  max-width: 500px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 10px;
+  transition: 0.5s ease-in;
+  opacity: 0;
+  z-index: -4;
+  h2 {
+    @include fontStyle(#000, 700, center);
+    font-size: 1.1rem;
+  }
+  p {
+    @include fontStyle($main-color, 500, center);
+    font-size: 0.9rem;
+    line-height: 2;
+  }
+  h4,
+  button {
+    @include fontStyle(rgb(29, 27, 27), 700, center);
+  }
+  h4 {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: 0.15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: 0.15em; /* Adjust as needed */
+  }
+  button {
+    display: block;
+    color: #fff;
+    width: 50%;
+    margin-top: 1em;
+    background-color: $main-color;
+    padding: 1em;
+    border: none;
+    border-radius: 150px;
+    cursor: pointer;
+    &:hover {
+      background-color: #147a74;
+    }
+  }
+  h4.type {
+    animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100px;
+    }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: $main-color;
+    }
+  }
+}
