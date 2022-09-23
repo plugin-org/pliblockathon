@@ -1,0 +1,676 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_date",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_likelyDisease",
+                "type": "string"
+            },
+            {
+                "internalType": "string[]",
+                "name": "_symptoms",
+                "type": "string[]"
+            },
+            {
+                "internalType": "string[]",
+                "name": "_medicines",
+                "type": "string[]"
+            },
+            {
+                "internalType": "string[]",
+                "name": "_files",
+                "type": "string[]"
+            },
+            {
+                "internalType": "bool",
+                "name": "_isCompleted",
+                "type": "bool"
+            }
+        ],
+        "name": "addMedicalRecord",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_doctorId",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_title",
+                "type": "string"
+            }
+        ],
+        "name": "createDoctor",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_description",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_website",
+                "type": "string"
+            }
+        ],
+        "name": "createOrganisation",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_dob",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_phone",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_patientAddress",
+                "type": "string"
+            }
+        ],
+        "name": "createPatient",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_doctorId",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_title",
+                "type": "string"
+            }
+        ],
+        "name": "updateDoctorDetails",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_id",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "_date",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_likelyDisease",
+                "type": "string"
+            },
+            {
+                "internalType": "string[]",
+                "name": "_symptoms",
+                "type": "string[]"
+            },
+            {
+                "internalType": "string[]",
+                "name": "_medicines",
+                "type": "string[]"
+            },
+            {
+                "internalType": "string[]",
+                "name": "_files",
+                "type": "string[]"
+            },
+            {
+                "internalType": "bool",
+                "name": "_isCompleted",
+                "type": "bool"
+            }
+        ],
+        "name": "updateMedicalRecord",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_description",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_website",
+                "type": "string"
+            }
+        ],
+        "name": "updateOrganisationDetails",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_dob",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_phone",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_patientAddress",
+                "type": "string"
+            }
+        ],
+        "name": "updatePatientDetails",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "doctorList",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "doctorId",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "title",
+                "type": "string"
+            },
+            {
+                "internalType": "address",
+                "name": "orgId",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+              "internalType": "address",
+              "name": "_id",
+              "type": "address"
+            }
+          ],
+        "name": "findSenderType",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getDoctorDetails",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "doctorId",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "title",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "orgId",
+                        "type": "address"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "uint256",
+                                "name": "id",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "string",
+                                "name": "adhaarNumber",
+                                "type": "string"
+                            }
+                        ],
+                        "internalType": "struct doctor.medicalSession[]",
+                        "name": "medicalSessions",
+                        "type": "tuple[]"
+                    }
+                ],
+                "internalType": "struct doctor.doctorDetails",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_id",
+                "type": "uint256"
+            }
+        ],
+        "name": "getMedicalRecord",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "date",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "likelyDisease",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "symptoms",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "medicines",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "files",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "isCompleted",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct patient.medicalRecord",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            }
+        ],
+        "name": "getMedicalRecords",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "date",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "likelyDisease",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "symptoms",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "medicines",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "files",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "isCompleted",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct patient.medicalRecord[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_id",
+                "type": "uint256"
+            }
+        ],
+        "name": "getMedicalSessionDetails",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "date",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "likelyDisease",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "symptoms",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "medicines",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "string[]",
+                        "name": "files",
+                        "type": "string[]"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "isCompleted",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct patient.medicalRecord",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getMedicalSessions",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "adhaarNumber",
+                        "type": "string"
+                    }
+                ],
+                "internalType": "struct doctor.medicalSession[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_adhaarNumber",
+                "type": "string"
+            }
+        ],
+        "name": "getPatientDetails",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "orgList",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "orgId",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "description",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "website",
+                "type": "string"
+            },
+            {
+                "internalType": "address",
+                "name": "admin",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "name": "patientList",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "adhaarNumber",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "dob",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "phone",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "patientAddress",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

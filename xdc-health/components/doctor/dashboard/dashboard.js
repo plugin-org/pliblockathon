@@ -10,7 +10,7 @@ import { dashboardTabs, links, testRecords, testTableHeaders } from "../config"
 export default function DoctorDashboard() {
     let today = new Date();
     const [currentTab, setCurrentTab] = useState("Current Applications")
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const [currentSessions, setCurrentSessions] = useState([]);
     const [previousSessions, setPreviousSessions] = useState([]);
@@ -77,7 +77,6 @@ export default function DoctorDashboard() {
                 <Field label="Likely Diagnosis" type="text" onChange={(e) => setDiagnosis(e.target.value)} />
                 <Field label="Medicines" type="tel" onChange={(e) => setPrescription(e.target.value)} />
                 <Field label="Scans Report" type="file" onChange={scanUploadHandler} multiple/>
-                {/* <Field label="Scanned Reports" type="text" onChange={(e) => setAddress(e.target.value)} /> */}
             </Modal>
         </Scaffold>
     )

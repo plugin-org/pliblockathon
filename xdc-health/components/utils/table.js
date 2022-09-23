@@ -3,27 +3,27 @@ import { FaPlus } from "react-icons/fa"
 function TableRow(props){
     return (
         <tr className="bg-white border-b hover:bg-gray-50">
-                        {props.patientName && (<th
-                            scope="row"
-                            className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
-                        >
-                            {props.patientName}
-                        </th>)}
-                        <td className="py-4 px-6">{props.date}</td>
-                        <td className="py-4 px-6">{props.time}</td>
-                        <td className="py-4 px-6">{props.appointmentType}</td>
-                        <td className="py-4 px-6">{props.likelyDiagnosis}</td>
-                        {props.onClick && (
-                            <td className="py-4 px-6">
-                            <button
-                                onClick={()=>props.onClick(props)}
-                                className="font-medium text-blue-600 hover:underline"
-                            >
-                                Edit
-                            </button>
-                        </td>
-                        )}
-                    </tr>
+            {props.patientName && (<th
+                scope="row"
+                className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap"
+            >
+                {props.patientName}
+            </th>)}
+            <td className="py-4 px-6">{props.date}</td>
+            <td className="py-4 px-6">{props.time}</td>
+            <td className="py-4 px-6">{props.appointmentType}</td>
+            <td className="py-4 px-6">{props.likelyDiagnosis}</td>
+            {props.onClick && (
+                <td className="py-4 px-6">
+                <button
+                    onClick={()=>props.onClick(props)}
+                    className="font-medium text-blue-600 hover:underline"
+                >
+                    Edit
+                </button>
+            </td>
+            )}
+        </tr>
     )
 }
 
