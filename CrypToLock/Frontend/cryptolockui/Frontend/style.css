@@ -14,7 +14,7 @@
     background-color: rgb(41, 48, 64,0.9);
     padding-bottom: 20px;
     margin: -10px;
-    border: solid:none;
+    border:solid;
     margin-top:-30px;
 
 }
@@ -55,7 +55,7 @@ html{
 }
 .nav a:hover{
     background-color: rgb(62, 189, 138);
-    border: solid:none;
+    border: solid;
     border-color:transparent;
     border-radius:20px;
     color:black;
@@ -72,4 +72,14 @@ fa fa-home:hover{
 }
 #hm:hover{
     color: black;
+}
+#message{
+    color:white;
+    font-size: 16x;
+    align-items: center;   
+    margin-top: 120px;
+    text-align: center;
+    border-radius: 15px;
+    letter-spacing: 2px;
+    padding: 20px;
 }
