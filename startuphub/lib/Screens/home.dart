@@ -1,12 +1,8 @@
-import 'package:startup_hub/Screens/patent.dart';
-import 'package:startup_hub/Services/startuplist.dart';
-import 'package:startup_hub/Widgets/patentContainer.dart';
-import '../Services/form.dart';
-import '../Widgets/constants.dart';
+import 'package:provider/provider.dart';
+
 import 'package:flutter/material.dart';
 import '../Widgets/widgets.dart';
-
-import '../Widgets/roundButton.dart';
+import '../Services/functions.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -16,12 +12,39 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    var startupServices = context.watch<Services>();
     return Scaffold(
       appBar: appBar(),
       drawer: apdrawer(),
-      body: Column(
+      body: startupServices.isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : RefreshIndicator(
+              onRefresh: () async {},
+              child: ListView.builder(
+                itemCount: startupServices.startups.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(startupServices.startups[index].title),
+                    subtitle: Text(startupServices.startups[index].description),
+                  );
+                },
+              ),
+            ),
+      /*Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
@@ -47,7 +70,7 @@ class _HomeState extends State<Home> {
                     MaterialPageRoute(builder: ((context) => patent())));
               }),
         ],
-      ),
+      ),*/
       bottomNavigationBar: bar(),
     );
   }

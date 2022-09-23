@@ -3,6 +3,7 @@ import 'package:startup_hub/Screens/home.dart';
 import 'package:startup_hub/Screens/patent.dart';
 import 'package:startup_hub/Screens/jobs.dart';
 import 'package:startup_hub/Screens/yourpatent.dart';
+import '../Screens/settings.dart';
 
 class apdrawer extends StatefulWidget {
   const apdrawer({super.key});
@@ -12,13 +13,6 @@ class apdrawer extends StatefulWidget {
 }
 
 class _apdrawerState extends State<apdrawer> {
-  void _onItemTapped() {
-    setState(() {
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => yourpatent())));
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -78,9 +72,8 @@ class _apdrawerState extends State<apdrawer> {
               'Your Patents',
               style: TextStyle(color: Colors.blue),
             ),
-            onTap: () {
-              _onItemTapped();
-            },
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => yourpatent()))),
           ),
           ListTile(
             leading: const Icon(
@@ -91,8 +84,8 @@ class _apdrawerState extends State<apdrawer> {
               'Settings',
               style: TextStyle(color: Colors.orange),
             ),
-            onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => yourpatent()))),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: ((context) => settings()))),
           ),
         ],
       ),

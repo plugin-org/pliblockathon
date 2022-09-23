@@ -52,7 +52,6 @@ class createjob extends StatelessWidget {
               color: Colors.lightBlueAccent,
               title: 'post your job',
               onPressed: () {
-                formd().addJobContainer(startupname, startupdescription);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

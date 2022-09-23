@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:startup_hub/Services/form.dart';
 import 'package:startup_hub/Widgets/patentContainer.dart';
@@ -17,4 +17,4 @@ class startuplist extends StatelessWidget {
       itemCount: formd().startupCount,
     );
   }
-}
+}*/

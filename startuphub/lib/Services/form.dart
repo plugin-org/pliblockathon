@@ -4,13 +4,13 @@ import 'dart:collection';
 // ignore: camel_case_types
 class form {
   late int id;
-  late String startupname;
+  late String title;
   late String description;
   form(
-      {required this.id, required this.startupname, required this.description});
+      {required this.id, required this.title, required this.description});
 }
 
-class formd extends ChangeNotifier {
+/*class formd extends ChangeNotifier {
   List<form> startup = [
     form(
         startupname: "StartupHub",
@@ -38,4 +38,4 @@ class formd extends ChangeNotifier {
     final f = form(startupname: starupname, description: jobdescription);
     jobs.add(f);
   }
-}
+}*/
