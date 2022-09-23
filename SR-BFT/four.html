@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    
+
+        window.addEventListener('load', () => {
+
+            // Via Query parameters - GET
+            /* const params = (new URL(document.location)).searchParams;
+            const name = params.get('name');
+            const surname = params.get('surname'); */
+
+            // Via local Storage
+            /* const name = localStorage.getItem('NAME');
+            const surname = localStorage.getItem('SURNAME'); */
+
+            const name = sessionStorage.getItem('NAME');
+            const surname = sessionStorage.getItem('SURNAME');
+            const mname = sessionStorage.getItem('MDATE');
+            const Wname = sessionStorage.getItem('WARRANTY');
+            const detail = sessionStorage.getItem('DETAIL');
+
+
+            document.getElementById('result-name').innerHTML = name;
+            document.getElementById('result-surname').innerHTML = surname;
+            document.getElementById('result-mname').innerHTML = mname;
+            document.getElementById('result-wname').innerHTML = Wname;
+            document.getElementById('result-detail').innerHTML = detail;
+
+        })
+
+        
+
+        function hash(string) {
+  const utf8 = new TextEncoder().encode(string);
+  return crypto.subtle.digest('SHA-256', utf8).then((hashBuffer) => {
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((bytes) => bytes.toString(16).padStart(2, '0'))
+      .join('');
+    return hashHex;
+  });
+}
+var ran=name;
+document.writeln(ran)
+
+hash(ran).then((hex) => console.log(hex)); 
+    </script>
+
+
+
+
+
+</body>
+</html>

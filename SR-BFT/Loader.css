@@ -1,0 +1,9 @@
+#preloader{
+    background: rgb(235, 229, 229) url(PBFT_Loader.gif) no-repeat center center;
+    background-size: 100;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+ 
