@@ -1,0 +1,34 @@
+{
+  "name": "mongo",
+  "version": "1.0.0",
+  "description": "Example for mongo",
+  "main": "server.js",
+  "scripts": {
+    "babel-node": "babel-node --presets=env",
+    "start2": "nodemon --exec npm run babel-node -- server.js",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "buffer": "^5.4.3",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-generator": "^4.16.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.9",
+    "multer": "^1.4.2",
+    "node-env-file": "^0.1.8",
+    "redis": "^3.0.2",
+    "redis-redisearch": "^1.0.1",
+    "sharp": "^0.24.0",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.4"
+  }
+}

@@ -1,0 +1,129 @@
+
+  <div class="site-wrap">
+
+
+    <div class="site-navbar bg-white py-2">
+
+      <div class="search-wrap">
+        <div class="container">
+          <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="#" method="post">
+            <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+          </form>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <div class="site-logo">
+              <a [routerLink]="['/']" class="js-logo-clone">Farmers Portal</a>
+            </div>
+          </div>
+          <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+              <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li class="active"  [routerLink]="['/']">
+                  <a>Home</a>
+                </li>
+
+                <li [routerLink]="['/register']"><a>Register</a></li>
+                <li [routerLink]="['/exchange']"><a>Item Market</a></li>
+                <li (click)="login()"><a>Login</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-blocks-cover">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto order-md-2 align-self-start">
+            <div class="site-block-cover-content">
+            <h2 class="sub-title">New seasonal Item</h2>
+            <h1>Arrivals Item</h1>
+            <p><a (click)="login()" class="btn btn-black rounded-0" style="color: white;">Login</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 order-1 align-self-end">
+            <img src="../../../assets/userStyles/images/fruitsveg.png" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-blocks-cover inner-page py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto order-md-2 align-self-start">
+            <div class="site-block-cover-content">
+            <h2 class="sub-title">New seasonal item</h2>
+            <h1>New Product</h1>
+            <p><a (click)="login()" class="btn btn-black rounded-0" style="color: white;">Login</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 order-1 align-self-end">
+            <img src="../../../assets/userStyles/images/model_6.png" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer custom-border-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <h3 class="footer-heading mb-4">Promo</h3>
+            <a href="#" class="block-6">
+              <img src="../../../assets/userStyles/images/about_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+              <h3 class="font-weight-light  mb-0">Pick up the seasonal item</h3>
+            </a>
+          </div>
+          <div class="col-lg-5 ml-auto mb-5 mb-lg-0">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Quick Links</h3>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                  <li><a href="#">Register</a></li>
+                  <li><a href="#">Login</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                  <li><a href="#">Item Market</a></li>
+                  <li><a href="#">About Us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="block-5 mb-5">
+              <h3 class="footer-heading mb-4">Contact Info</h3>
+              <ul class="list-unstyled">
+                <li class="address">HIDDEN PARADISE THENI,TAMILNADU</li>
+                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
+                <li class="email">emailaddress@domain.com</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved to Farmers Poratal
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  </div>
+
