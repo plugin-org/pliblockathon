@@ -1,8 +1,8 @@
 import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 import '../Widgets/widgets.dart';
 import '../Services/functions.dart';
+import '../Widgets/patentContainer.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -37,14 +37,15 @@ class _HomeState extends State<Home> {
               child: ListView.builder(
                 itemCount: startupServices.startups.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(startupServices.startups[index].title),
-                    subtitle: Text(startupServices.startups[index].description),
+                  return patentContainer(
+                    teamName: startupServices.startups[index].title.toString(),
+                    description:
+                        startupServices.startups[index].description.toString(),
                   );
                 },
               ),
             ),
-      /*Column(
+      /* body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
@@ -70,7 +71,9 @@ class _HomeState extends State<Home> {
                     MaterialPageRoute(builder: ((context) => patent())));
               }),
         ],
-      ),*/
+      ),
+      
+    ); */
       bottomNavigationBar: bar(),
     );
   }

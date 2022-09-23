@@ -1,23 +1,19 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'form.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
-import 'package:web_socket_channel/io.dart';
+
+String infura_url = "https://rpc.apothem.network";
+
+String contractAddress1 = "0x8d05266f239fc8e1b7927f42a2e77a2cc732dde6";
 
 class Services extends ChangeNotifier {
   List<form> startups = [];
-  final String _rpcUrl =
-      Platform.isAndroid ? 'http://10.0.2.2:7545' : 'http://127.0.0.1:7545';
-  final String _wsUrl =
-      Platform.isAndroid ? 'http://10.0.2.2:7545' : 'ws://127.0.0.1:7545';
+  String contractAddress1 = "0x8d05266f239fc8e1b7927f42a2e77a2cc732dde6";
   bool isLoading = true;
-
   final String _privatekey =
-      '202b9d3e13a004b00c7be08f7dc7168ef355180bfb52999b14d4dc0369bb6f3d';
+      "700dc82842555bef5064cab174a99deedbdb14c0e312aecef548d26014bd67f9";
   late Web3Client _web3cient;
 
   Services() {
@@ -25,13 +21,7 @@ class Services extends ChangeNotifier {
   }
 
   Future<void> init() async {
-    _web3cient = Web3Client(
-      _rpcUrl,
-      http.Client(),
-      socketConnector: () {
-        return IOWebSocketChannel.connect(_wsUrl).cast<String>();
-      },
-    );
+    _web3cient = Web3Client(infura_url, http.Client());
     await getABI();
     await getCredentials();
     await getDeployedContract();
@@ -40,12 +30,9 @@ class Services extends ChangeNotifier {
   late ContractAbi _abiCode;
   late EthereumAddress _contractAddress;
   Future<void> getABI() async {
-    String abiFile = await rootBundle.loadString('contracts/startup.json');
-    var jsonABI = jsonDecode(abiFile);
-    _abiCode =
-        ContractAbi.fromJson(jsonEncode(jsonABI['abi']), 'startupContract');
-    _contractAddress =
-        EthereumAddress.fromHex(jsonABI["networks"]["5777"]["address"]);
+    String abi = await rootBundle.loadString('assets/abi.json');
+    _abiCode = ContractAbi.fromJson(abi, 'startupContract');
+    _contractAddress = EthereumAddress.fromHex(contractAddress1);
   }
 
   late EthPrivateKey _creds;

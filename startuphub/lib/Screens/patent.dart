@@ -3,15 +3,29 @@ import 'package:startup_hub/Screens/home.dart';
 import '../Widgets/widgets.dart';
 import '../Widgets/constants.dart';
 import '../Widgets/roundButton.dart';
+import '../Services/functions.dart';
 
-class patent extends StatelessWidget {
+class patent extends StatefulWidget {
   static const String id = 'patent';
   const patent({super.key});
 
   @override
+  State<patent> createState() => _patentState();
+}
+
+class _patentState extends State<patent> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String startupdescription = '';
-    String startupname = '';
     return Scaffold(
       appBar: appBar(),
       drawer: apdrawer(),
@@ -32,9 +46,7 @@ class patent extends StatelessWidget {
               height: 30,
             ),
             TextField(
-              onChanged: (value) {
-                startupname = value;
-              },
+              controller: titleController,
               decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter the startup name'),
             ),
@@ -45,9 +57,7 @@ class patent extends StatelessWidget {
               style: TextStyle(fontSize: 10),
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              onChanged: (value) {
-                startupdescription = value;
-              },
+              controller: descriptionController,
               decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter the Startup Description.'),
             ),
@@ -58,6 +68,8 @@ class patent extends StatelessWidget {
               color: Colors.lightBlueAccent,
               title: 'post',
               onPressed: () {
+                Services().addStartup(
+                    titleController.text, descriptionController.text);
                 Navigator.push(
                     context, MaterialPageRoute(builder: ((context) => Home())));
               },
