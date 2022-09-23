@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../Widgets/roundButton.dart';
 import '../Widgets/widgets.dart';
 import '../Widgets/constants.dart';
-import '../Screens/createjob.dart';
+import 'patent.dart';
 
 class jobs extends StatefulWidget {
   const jobs({super.key});
@@ -30,11 +30,11 @@ class _jobsState extends State<jobs> {
           ),
           Padding(
             padding: EdgeInsets.all(10),
-            child: Text('list of jobs'),
+            child: Text('list of patents'),
           ),
           RoundButton(
               color: Colors.lightBlueAccent,
-              title: 'create a job',
+              title: 'create a patent',
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => createjob())));

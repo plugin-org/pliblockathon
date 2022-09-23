@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:startup_hub/Screens/home.dart';
-import 'package:startup_hub/Screens/patent.dart';
-import 'package:startup_hub/Screens/jobs.dart';
+import 'package:startup_hub/Screens/idea.dart';
+import 'package:startup_hub/Screens/openpatent.dart';
 import 'package:startup_hub/Screens/yourpatent.dart';
 import '../Screens/settings.dart';
 
@@ -145,13 +145,13 @@ class _barState extends State<bar> {
               Icons.pattern,
               color: Colors.blue,
             ),
-            label: 'patent'),
+            label: 'idea'),
         BottomNavigationBarItem(
             icon: Icon(
               Icons.business,
               color: Colors.blue,
             ),
-            label: 'jobs'),
+            label: 'patents'),
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: Color.fromARGB(255, 62, 178, 255),

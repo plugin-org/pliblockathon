@@ -26,7 +26,7 @@ class _yourpatent extends State<yourpatent> {
             padding: EdgeInsets.all(10),
             child: patentContainer(
               teamName: "Startup Hub",
-              description: "This is impossible",
+              description: "With Great Power Comes Great Responsibility",
             ),
           ),
         ],

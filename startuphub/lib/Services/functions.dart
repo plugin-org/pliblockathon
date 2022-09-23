@@ -14,7 +14,7 @@ class Services extends ChangeNotifier {
   bool isLoading = true;
   final String _privatekey =
       "700dc82842555bef5064cab174a99deedbdb14c0e312aecef548d26014bd67f9";
-  late Web3Client _web3cient;
+  Web3Client? _web3cient;
 
   Services() {
     init();
@@ -54,7 +54,7 @@ class Services extends ChangeNotifier {
   }
 
   Future<void> fetchform() async {
-    List totalstartuplist = await _web3cient.call(
+    List totalstartuplist = await _web3cient!.call(
       contract: _deployedContract,
       function: _startupCount,
       params: [],
@@ -63,7 +63,7 @@ class Services extends ChangeNotifier {
     int totalstartuplen = totalstartuplist[0].toInt();
     startups.clear();
     for (var i = 0; i < totalstartuplen; i++) {
-      var temp = await _web3cient.call(
+      var temp = await _web3cient!.call(
           contract: _deployedContract,
           function: _startups,
           params: [BigInt.from(i)]);
@@ -83,7 +83,7 @@ class Services extends ChangeNotifier {
   }
 
   Future<void> addStartup(String title, String description) async {
-    await _web3cient.sendTransaction(
+    await _web3cient!.sendTransaction(
       _creds,
       Transaction.callContract(
         contract: _deployedContract,
