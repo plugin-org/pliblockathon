@@ -48,7 +48,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light navbar-bg px-4 px-lg-5 py-3 py-lg-0">
                 <a href="index.html" class="navbar-brand p-0">
-                    <h1 class="m-0">Eco Drive</h1>
+                    <h1 class="m-0">XDC Eco Drive</h1>
                     <!-- <img src="img/logo.jpg" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -69,7 +69,8 @@
                         </div>
                         <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
                     </div>
-                    <a href="" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Connect</a>
+                    <a href="add-user.html" id="wallet-btn-nav"
+                        class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Connect</a>
                 </div>
             </nav>
 
@@ -80,9 +81,11 @@
                             <h1 class="text-white mb-4 animated zoomIn">Welcome Eco Driver, Get your Exciting
                                 Rewards!
                             </h1>
-                            <p class="text-white pb-3 animated zoomIn">Tempor rebum no at dolore lorem clita rebum rebum
-                                ipsum rebum stet dolor sed justo kasd. Ut dolor sed magna dolor sea diam. Sit diam sit
-                                justo amet ipsum vero ipsum clita lorem</p>
+                            <p class="text-white pb-3 animated zoomIn">A breezy drive to a sustainable future.XDC is
+                                excited to reward you with XDC tokens for driving in ECO mode and making significant
+                                contribution towards
+                                Carbon Neutrality. Happy and Safe Eco driving!!.
+                            </p>
                             <a id="getReward"
                                 class="btn btn-outline-light rounded-pill border-2 py-3 px-5 animated slideInRight">
                                 Get Rewards
@@ -153,6 +156,29 @@
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="src/utils.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
+    <script>
+        async function connectWallet() {
+            const accounts = await window.web3.eth.getAccounts()
+            if (accounts.length > 0) {
+                console.log("accounts", accounts);
+                const truncate = (input) => {
+                    if (input.length > 5) {
+                        return input.substring(0, 12) + '...';
+                    }
+                    return input;
+                };
+                const userAddress = truncate(accounts[0])
+                $("#wallet-btn-nav").html("XDC Wallet: " + userAddress);
+                // $("#wallet-btn-nav").hide();
+                $("#connectToWallet").hide();
+
+            } else {
+                // alert("Please login XDC pay")
+            }
+
+        }
+        connectWallet();
+    </script>
 </body>
 
 </html>

@@ -51,7 +51,7 @@ const getEcoContract = async (web3) => {
   console.log('data', data);
   const eco1 = new web3.eth.Contract(
     data,
-    "0xae7db1e1427006d6fc9df25d69d3269eafaabcc1"
+    "0xC13f90843d6E1dedb01b2dc304f15a20C1f63859"
   );
   console.log("eco1", eco1)
   return eco1;

@@ -46,9 +46,9 @@
 
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light  navbar-bg px-4 px-lg-5 py-3 py-lg-0">
+            <nav class="navbar navbar-expand-lg navbar-light navbar-bg px-4 px-lg-5 py-3 py-lg-0">
                 <a href="index.html" class="navbar-brand p-0">
-                    <h1 class="m-0">Eco Drive</h1>
+                    <h1 class="m-0">XDC Eco Drive</h1>
                     <!-- <img src="img/logo.jpg" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -68,9 +68,9 @@
                             </div>
                         </div>
                         <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
-
                     </div>
-                    <a href="" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Connect</a>
+                    <a href="add-user.html" id="wallet-btn-nav"
+                        class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Connect</a>
                 </div>
             </nav>
 
@@ -188,6 +188,29 @@
     <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
     <script type="text/javascript" src="src/utils.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
+    <script>
+        async function connectWallet() {
+            const accounts = await window.web3.eth.getAccounts()
+            if (accounts.length > 0) {
+                console.log("accounts", accounts);
+                const truncate = (input) => {
+                    if (input.length > 5) {
+                        return input.substring(0, 12) + '...';
+                    }
+                    return input;
+                };
+                const userAddress = truncate(accounts[0])
+                $("#wallet-btn-nav").html("XDC Wallet: " + userAddress);
+                // $("#wallet-btn-nav").hide();
+                $("#connectToWallet").hide();
+
+            } else {
+                // alert("Please login XDC pay");
+            }
+
+        }
+        connectWallet();
+    </script>
 </body>
 
 </html>
