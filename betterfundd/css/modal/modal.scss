@@ -1,0 +1,183 @@
+@import "../general.scss";
+
+.total-layer {
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: transparent;
+  transition: 1s;
+  z-index: -4;
+}
+
+.total-layer.show {
+  background-color: rgba(31, 29, 29, 0.426);
+  z-index: 3;
+}
+
+.modal-pop.show {
+  transform: translate(-50%, 10%);
+  opacity: 1;
+  z-index: 4;
+}
+
+.modal-pop {
+  @include displayF(column, center, center);
+  @include modal(absolute, 80%, 10%, 50%); // position, width, top, left
+  @include fontStyle(#000, 800, left);
+  max-width: 700px;
+  display: block;
+  opacity: 0;
+  padding: 1.5em;
+  background-color: rgb(255, 255, 255);
+  transform: translate(-50%, -30%);
+  border-radius: 10px;
+  transition: 1s ease;
+  z-index: -4;
+  .modal-header {
+    @include displayF(row, center, center);
+    width: 100%;
+    h2 {
+      font-size: 1.1rem;
+      width: 85%;
+    }
+    button {
+      @include displayF(row, center, center);
+      width: 15%;
+      background-color: transparent;
+      border: none;
+    }
+  }
+  p {
+    @include fontStyle(rgb(196, 175, 175), 500, left);
+    font-size: 0.8rem;
+    width: 100%;
+  }
+  .modal-inner {
+    @include displayF(column, center, center);
+    @include fontStyle(#000, 600, center);
+    width: 100%;
+    margin: auto;
+    border: 1px solid rgba(128, 128, 128, 0.479);
+    border-radius: 10px;
+    margin-top: 1em;
+    .content-input {
+      display: flex;
+      flex-direction: row;
+      width: 85%;
+      margin-top: 2em;
+      input[type="radio"] {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        margin-right: 1em;
+        &::before {
+          width: 20px;
+          height: 20px;
+          background: white;
+          border: 1px solid #515757bb;
+          border-radius: 100%;
+          content: "";
+          position: absolute;
+        }
+        &::after {
+          display: none;
+          content: "";
+          position: absolute;
+          width: 14px;
+          height: 14px;
+          top: 4px;
+          left: 4px;
+          background-color: $main-color;
+          border-radius: 100%;
+        }
+        &:checked::after {
+          display: block;
+        }
+      }
+      span {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90%;
+        text-align: left;
+        .lighter {
+          font-weight: lighter;
+          color: gray;
+          font-size: 0.7rem;
+        }
+      }
+    }
+    p {
+      width: 85%;
+      line-height: 2;
+    }
+    h4 {
+      width: 80%;
+      text-align: left;
+      span {
+          color: $main-color;
+      }
+    }
+    hr {
+      display: none;
+      width: 100%;
+    }
+    h3 {
+      @include fontStyle($main-color, 600, center);
+      display: none;
+      font-size: 1rem;
+      width: 80%;
+      padding: 0.5em;
+    }
+    .input-pledge {
+      @include displayF(row, center, center);
+      width: 80%;
+      gap: 1em;
+      margin-bottom: 2em;
+      h3 {
+        display: none;
+      }
+      label {
+        position: relative;
+        width: 50%;
+        span {
+          position: absolute;
+          top: 1em;
+          left: 3.5vw;
+          color: $main-color;
+        }
+        input[type="text"] {
+          @include fontStyle(#000, 800, left);
+          font-size: 1rem;
+          width: 80%;
+          padding: 0.9em;
+          border: 1px solid $main-color;
+          border-radius: 150px;
+          text-align: right;
+          outline: none;
+        }
+      }
+      button {
+        @include fontStyle(#fff, 700, center);
+        border: none;
+        border-radius: 150px;
+        background-color: $main-color;
+        width: 50%;
+        padding: 1.2em;
+      }
+    }
+  }
+  .modal-inner.display-pledge {
+    hr {
+      display: block;
+    }
+    h3 {
+      display: block;
+    }
+    .input-pledge h3 {
+      display: none;
+    }
+  }
+}

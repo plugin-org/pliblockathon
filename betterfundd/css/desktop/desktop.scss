@@ -1,0 +1,171 @@
+@import "../general.scss";
+// Header
+header {
+  display: flex;
+  flex-direction: row;
+  min-height: 60vh;
+  h1 {
+    width: 40%;
+    margin: 1em;
+  }
+  a {
+    display: none;
+  }
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    background-color: transparent;
+    box-shadow: none;
+    position: inherit;
+    transform: translate(0, 0);
+    li {
+      width: auto;
+      border: none;
+      a {
+        width: 100%;
+        padding: 1em;
+        color: #fff;
+        font-weight: 400;
+        &:hover {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+// Main
+.content-section {
+  .mark-btn {
+    #open-modal {
+      justify-content: center;
+    }
+    button {
+      justify-content: flex-start;
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      &:hover {
+        background-color: #147a74;
+      }
+      &:first-child {
+        width: 25%;
+        left: -20%;
+      }
+      &:last-child {
+        width: 20%;
+        background-color: #f4f4f4;
+        right: -20%;
+        span {
+          @include fontStyle(#407d79, 600, center);
+          display: block;
+          width: 70%;
+        }
+      }
+    }
+  }
+  &.normal-content {
+    .stats {
+      display: flex;
+      flex-direction: row;
+    }
+    hr {
+      height: 50px;
+      border-top: none;
+      border-left: 0.3px solid rgba(202, 190, 190, 0.692);
+    }
+  }
+  &.about {
+    .about-inner {
+      h2 {
+        span {
+          width: 50%;
+          float: right;
+          text-align: right;
+        }
+      }
+      .reward {
+        flex-direction: row;
+        h4 {
+          width: 70%;
+          text-align: left;
+        }
+        button {
+          width: 30%;
+          cursor: pointer;
+          &:hover {
+            background-color: #147a74;
+          }
+        }
+      }
+    }
+  }
+}
+// Modal
+
+.modal-pop {
+  .modal-header {
+    button {
+      cursor: pointer;
+    }
+  }
+  p {
+    font-size: 1rem;
+  }
+  .modal-inner {
+    position: relative;
+    .content-input {
+      span {
+        flex-direction: row;
+        width: 50%;
+        .lighter {
+          font-weight: bold;
+          color: #af9c9c;
+          font-size: 1rem;
+          padding-left: 1em;
+        }
+      }
+    }
+    h4 {
+      position: absolute;
+      top: 0.5em;
+      width: auto;
+      left: 90%;
+    }
+    h3 {
+      display: none;
+    }
+    .input-pledge {
+      width: 90%;
+      h3 {
+        display: block;
+        width: 60%;
+        text-align: left;
+      }
+      label {
+        width: 20%;
+        span {
+          left: 1.5vw;
+        }
+        input[type="text"] {
+          width: 80%;
+        }
+      }
+      button {
+        width: 20%;
+        cursor: pointer;
+        &:hover {
+          background-color: #147a74;
+        }
+      }
+    }
+  }
+  .modal-inner.display-pledge {
+    h3 {
+      display: none;
+    }
+    .input-pledge h3 {
+      display: block;
+    }
+  }
+}

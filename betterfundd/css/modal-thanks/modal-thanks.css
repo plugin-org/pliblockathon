@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700;900&display=swap");
+html, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  display: block;
+  width: 100%;
+  z-index: 2;
+}
+
+.thanks-card.show {
+  opacity: 1;
+  z-index: 4;
+}
+
+.thanks-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  max-width: 500px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 10px;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+  opacity: 0;
+  z-index: -4;
+  /* The typing effect */
+  /* The typewriter cursor effect */
+}
+
+.thanks-card h2 {
+  color: #000;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.thanks-card p {
+  color: #3ab5aa;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.thanks-card h4,
+.thanks-card button {
+  color: #1d1b1b;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+.thanks-card h4 {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange;
+  /* The typwriter cursor */
+  white-space: nowrap;
+  /* Keeps the content on a single line */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em;
+  /* Adjust as needed */
+}
+
+.thanks-card button {
+  display: block;
+  color: #fff;
+  width: 50%;
+  margin-top: 1em;
+  background-color: #3ab5aa;
+  padding: 1em;
+  border: none;
+  border-radius: 150px;
+  cursor: pointer;
+}
+
+.thanks-card button:hover {
+  background-color: #147a74;
+}
+
+.thanks-card h4.type {
+  -webkit-animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+          animation: typing 1.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+@-webkit-keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #3ab5aa;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #3ab5aa;
+  }
+}
+/*# sourceMappingURL=modal-thanks.css.map */

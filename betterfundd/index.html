@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <title>Crowdfunding </title>
+    <link rel="stylesheet" href="./css/general.css" />
+    <link rel="stylesheet" href="./css/navbar/navbar.css" />
+    <link rel="stylesheet" href="./css/main/main.css" />
+    <link rel="stylesheet" href="./css/modal/modal.css" />
+    <link rel="stylesheet" href="./css/modal-thanks/modal-thanks.css" />
+    <link
+      rel="stylesheet"
+      media="(min-width: 800px)"
+      href="./css/desktop/desktop.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <img src="./assets/icons/logo.svg" alt="" />
+      </h1>
+      <a href="#" id="subMenu"
+        ><img
+          src="./assets/icons/icon-hamburger.svg"
+          id="subMenuIcon"
+          alt="navbar icon"
+      /></a>
+      <ul class="subMenu">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Discover</a></li>
+        <li><a href="#">Get Started</a></li>
+      </ul>
+    </header>
+    <main>
+      <div class="total-layer" aria-hidden="true"></div>
+      <div class="content-section">
+        <img src="./assets/icons/logo-mastercraft.svg" alt="" />
+        <h1>BECAUSE THEY NEED YOUR HELP</h1>
+        <p>
+          TOGETHER WE CAN IMPROVE THEIR LIVES
+.
+        </p>
+        <div class="mark-btn">
+          <button> <li><a href="https://remix.xinfin.network/#optimize=false&runs=200&evmVersion=null&version=soljson-v0.8.7+commit.e28d00a7.js">Donate</a></li></button>
+        <button id="open-modal">Donate Now<li></button></div>
+          <button id="bookmark">
+            <img src="./assets/icons/icon-bookmark.svg" alt="icon bookmark" />
+            <span class="bookmark">Bookmark</span>
+          </button>
+        </div>
+      </div>
+      <div class="content-section normal-content">
+        <div class="stats">
+          <h2>$89, 914 <span>of $100,000 backed</span></h2>
+          <hr />
+          <h2>5,007 <span> total backers</span></h2>
+          <hr />
+          <h2>56 <span>days left</span></h2>
+        </div>
+        <div class="progress" aria-label="progress bar"></div>
+      </div>
+      <div class="content-section normal-content about">
+        <h2>About this project</h2>
+        <p>
+          We are an independent, non-governmental and non-profit organisation working for the holistic development of parentless children, women and children belonging to vulnerable families. Founded in 1949 in Austria, SOS Children’s Villages began its operations in India in 1964. For over 50 years, we have reached out to over 25,000 children through our 32 SOS Children’s Villages and 32 community projects in India.SOS Children’s Villages of India was established in 1964 at Faridabad near Delhi. SOS India has worked with children, communities, disaster struck and disaster accutane prone areas, giving hope to weary communities and families. SOS India is the largest operation within the SOS International Federation of 134 countries.
+At SOS Children’s Villages of India, we are committed to the welfare of parentless and abandoned children and to strengthening families and communities as a preventive measure in the fight against abandonment and social neglect.
+The organisation’s work is based on the following four pillars:
+The Mother: Every child has a caring parent
+Brothers and Sisters: Every child has family ties and he or she grows up with a sense of responsibility and a spirit of sharing
+The House: A place where the child feels secure and has a sense of belonging
+The Village: A community that surrounds the child so that every child has familial roots
+One of the most unique features of SOS Children’s Villages is the home-like environment and the long-term support given to every child under our care up to the age of 24.
+        </p>
+        
+        <div class="about-inner">
+          <h2>First Donation <span>Pledge $25 or more</span></h2>
+          <p>
+            A curative programme of SOS Children’s Villages of India that reaches out to over 6500 girls and boys in 32 Children’s Villages across India.
+
+Each Village has 12-15 Family Homes, with every home consisting of 10 children on an average along with an SOS Mother. Holistic development including education, nutrition, health and psychological development is taken care of till the time children are settled in their lives.
+          </p>
+          <div class="reward">
+            <h4>101 <span>left</span></h4>
+            <button class="select">Select Reward</button>
+          </div>
+        </div>
+        <div class="about-inner">
+          <h2>Black Edition Stand <span>Pledge $75 or more</span></h2>
+          <p>
+            You get a Black Special Edition computer stand and a personal thank
+            you. You’ll be added to our Backer member list. Shipping is
+            included.
+          </p>
+          <div class="reward">
+            <h4>64 <span>left</span></h4>
+            <button class="select">Select Reward</button>
+          </div>
+        </div>
+        <div class="about-inner">
+          <h2>Mahogany Special Edition <span>Pledge $200 or more</span></h2>
+          <p>
+            You get two Special Edition Mahogany stands, a Backer T-Shirt, and a
+            personal thank you. You’ll be added to our Backer member list.
+            Shipping is included.
+          </p>
+          <div class="reward">
+            <h4>0 <span>left</span></h4>
+            <button>Out of Stock</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-pop">
+        <div class="modal-header">
+          <h2>Back this project</h2>
+          <button aria-label="icon close" id="close-modal">
+            <img src="./assets/icons/icon-close-modal.svg" alt="icon close" />
+          </button>
+        </div>
+        <p>
+          Want to support us in bringing Mastercraft Bamboo Monitor Riser out in
+          the world?
+        </p>
+        <div class="modal-inner" id="1">
+          <label class="content-input">
+            <input type="radio" name="pledge" value="pledge" />
+            <span>Pledge with no reward</span>
+          </label>
+          <p>
+            You get an ergonomic stand made of natural bamboo. You've helped us
+            launch our promotional campaign, and you’ll be added to a special
+            Backer member list.
+          </p>
+          <hr />
+          <h3>Enter your pledge</h3>
+          <div class="input-pledge" aria-hidden="true"></div>
+        </div>
+        <div class="modal-inner" id="2">
+          <label class="content-input">
+            <input type="radio" name="pledge" value="pledge" />
+            <span
+              >Bamboo Stand
+              <span class="lighter">Pledge $25 or more</span></span
+            >
+          </label>
+          <p>
+            You get an ergonomic stand made of natural bamboo. You've helped us
+            launch our promotional campaign, and you’ll be added to a special
+            Backer member list.
+          </p>
+          <h4>101 <span>left</span></h4>
+          <hr />
+          <h3>Enter your pledge</h3>
+          <div class="input-pledge" aria-hidden="true"></div>
+        </div>
+        <div class="modal-inner" id="3">
+          <label class="content-input">
+            <input type="radio" name="pledge" value="pledge" />
+            <span
+              >Black Edition Stand
+              <span class="lighter">Pledge $75 or more</span></span
+            >
+          </label>
+          <p>
+            You get a Black Special Edition computer stand and a personal thank
+            you. You’ll be added to our Backer member list. Shipping is included
+          </p>
+          <h4>64 <span>left</span></h4>
+          <hr />
+          <h3>Enter your pledge</h3>
+          <div class="input-pledge" aria-hidden="true"></div>
+        </div>
+        <div class="modal-inner" id="4">
+          <label class="content-input">
+            <input type="radio" name="pledge" value="pledge" />
+            <span
+              >Mahogany Special Edition
+              <span class="lighter">Pledge $200 or more</span></span
+            >
+          </label>
+          <p>
+            You get two Special Edition Mahogany stands, a Backer T-Shirt, and a
+            personal thank you. You’ll be added to our Backer member list.
+            Shipping is included.
+          </p>
+          <h4>0 <span>left</span></h4>
+          <hr />
+          <h3>Enter your pledge</h3>
+          <div class="input-pledge" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="thanks-card" id="thanks-card">
+        <img src="./assets/icons/icon-check.svg" alt="done icon" />
+        <h2>Thanks for your support!</h2>
+        <p>
+          Your pledge brings us one step closer to sharing Mastercraft Bamboo
+          Monitor Riser worldwide. You will get an email once our campaign is
+          completed.
+        </p>
+        <h4 id="type">We love u c:</h4>
+        <button id="gotit">Got it!</button>
+      </div>
+    </main>
+    <script src="./js/animations.js"></script>
+  </body>
+</html>

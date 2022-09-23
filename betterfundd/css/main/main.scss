@@ -1,0 +1,142 @@
+@import "../general.scss";
+.content-section {
+  @include displayF(column, center, center);
+  width: 80%;
+  max-width: 700px;
+  margin: auto;
+  padding: 1.5em;
+  margin-top: -4em;
+  margin-bottom: 2em;
+  background-color: #fff;
+  box-shadow: 0 0 0.3em rgba(77, 69, 69, 0.425);
+  border-radius: 10px;
+  & > img {
+    margin-top: -2.5em;
+  }
+  h1 {
+    @include fontStyle(#000, 700, center);
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  p {
+    @include fontStyle(#777777, 400, center);
+    display: block;
+    line-height: 1.5;
+    width: 100%;
+  }
+  .mark-btn {
+    @include displayF(row, center, center);
+    gap: 1em;
+    width: 100%;
+    button {
+      @include displayF(row, center, center);
+      border-radius: 40px;
+      border: none;
+      &:first-child {
+        @include fontStyle(#fff, bold, center);
+        font-size: 0.8rem;
+        width: 70%;
+        padding: 1.5em;
+        background-color: $main-color;
+      }
+      &:last-child {
+        width: auto;
+        background-color: transparent;
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+  &.normal-content {
+    margin-top: 0;
+    .stats {
+      width: 100%;
+    }
+    h2 {
+      @include fontStyle(#000, bolder, center);
+      display: block;
+      width: 100%;
+      span {
+        @include fontStyle(rgb(196, 175, 175), bold, center);
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: block;
+        width: 100%;
+        padding-top: 0.5em;
+      }
+    }
+    hr {
+      width: 30%;
+      border: none;
+      border-top: 0.1px solid rgba(219, 210, 210, 0.692);
+      background-color: transparent;
+    }
+    .progress {
+      width: 90%;
+      position: relative;
+      height: 20px;
+      margin: auto;
+      margin-bottom: 1em;
+      background-color: #ebe5e5;
+      border-radius: 30px;
+    }
+    .progress::before {
+      content: "";
+      position: absolute;
+      width: 75%;
+      height: 20px;
+      background-color: #3bb4ad;
+      border-radius: 30px;
+    }
+  }
+  &.about {
+    h2,
+    p {
+      text-align: left;
+      line-height: 1.5;
+    }
+    .about-inner {
+      @include displayF(column, center, flex-start);
+      width: 90%;
+      margin-top: 1em;
+      padding: 1em;
+      border: 1px solid rgba(66, 62, 62, 0.337);
+      border-radius: 15px;
+      h2 {
+        font-size: 1rem;
+        span {
+          text-align: left;
+        }
+      }
+      .reward {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        h4 {
+          @include displayF(row, flex-start, center);
+          @include fontStyle(rgb(0, 0, 0), bold, left);
+          margin: 0.1em;
+          font-size: 2.5rem;
+          span {
+            color: rgb(153, 135, 135);
+            padding-left: 0.5em;
+            font-size: 1rem;
+          }
+        }
+        button {
+          @include fontStyle(#fff, 500, center);
+          display: block;
+          padding: 1.5em;
+          margin-top: 1em;
+          width: 80%;
+          border-radius: 30px;
+          background-color: $main-color;
+          border: none;
+        }
+      }
+    }
+  }
+}
