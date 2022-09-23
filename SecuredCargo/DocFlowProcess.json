@@ -1,0 +1,61 @@
+[
+	{
+		"ProcessId" : "simplelc",
+		"ProcessName":"Letter of Credit",
+		"Steps":[
+			{
+				"Step":0,
+				"Sender":"Applicant",
+				"Receiver":"Beneficiary",
+				"StepTitle":"Sales Agreement",
+				"Document": {"Upload":true, "Title":"Sales Agreement"}, 
+				"Status":{
+					"Capture":true, 
+					"StatusList":[
+						{"StatusId":"Request", "Statement":"I request you to Accept and Sign Sales Agreement"}
+					], 
+					"ReqStatus":"Request"
+				}
+			},
+			{
+				"Step":1,
+				"Sender":"Beneficiary",
+				"Receiver":"Applicant",
+				"StepTitle":"Sales Agreement",
+				"Document": {"Upload":false}, 
+				"Status":{
+					"Capture":true, 
+					"StatusList":[
+						{"StatusId":"Accept", "Statement":"I Accept and Sign Sales Agreement"},
+						{"StatusId":"Reject", "Statement":"I Reject this Sales Agreement"}
+					], 
+					"ReqStatus":"Accept"
+				}
+			}
+		]
+	},
+	{
+		"ProcessId" : "univcert",
+		"ProcessName":"University Certificate Issuance",
+		"Steps":[
+			{
+				"Step":0,
+				"Sender":"Applicant",
+				"Receiver":"Beneficiary",
+				"StepTitle":"Sales Agreement",
+				"Document": {"Upload":true, "Title":"Sales Agreement"}, 
+				"Status":{"Capture":false, "DefaultStatus":"Signed", "ReqStatus":"Signed"}
+			},
+			{
+				"Step":1,
+				"Sender":"Beneficiary",
+				"Receiver":"Applicant",
+				"StepTitle":"Sales Agreement",
+				"Document": {"Upload":false}, 
+				"Status":{"Capture":true, "StatusList":["Accept","Reject"], "ReqStatus":"Accept"}
+			}
+		]
+	}
+	
+
+]
