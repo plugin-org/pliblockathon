@@ -1,0 +1,28 @@
+.cv{
+    color:Red;
+    font-size:x-large;
+    font-family: 'Roboto', sans-serif;
+    height : 2em;
+    padding-top : 25px;
+    text-align: center;
+}
+.cont{
+    text-align: center;
+}
+#save{
+    width : 95px;
+    height : 45px;
+    border-style: groove;
+    border-radius: 15px;
+    background-color:#1db096;
+    color:white;
+}
+#save:hover{
+    background-color:#23cdaf;
+    transition:all ease 0.2s;
+}
+label{
+    position : relative;
+    /*text-align : center;
+    padding-left: 350px;*/
+}

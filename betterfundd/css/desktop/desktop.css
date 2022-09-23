@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700;900&display=swap");
+html, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  display: block;
+  width: 100%;
+  z-index: 2;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  min-height: 60vh;
+}
+
+header h1 {
+  width: 40%;
+  margin: 1em;
+}
+
+header a {
+  display: none;
+}
+
+header ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 50%;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  position: inherit;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+header ul li {
+  width: auto;
+  border: none;
+}
+
+header ul li a {
+  width: 100%;
+  padding: 1em;
+  color: #fff;
+  font-weight: 400;
+}
+
+header ul li a:hover {
+  font-weight: 600;
+}
+
+.content-section .mark-btn #open-modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.content-section .mark-btn button {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.content-section .mark-btn button:hover {
+  background-color: #147a74;
+}
+
+.content-section .mark-btn button:first-child {
+  width: 25%;
+  left: -20%;
+}
+
+.content-section .mark-btn button:last-child {
+  width: 20%;
+  background-color: #f4f4f4;
+  right: -20%;
+}
+
+.content-section .mark-btn button:last-child span {
+  color: #407d79;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  width: 70%;
+}
+
+.content-section.normal-content .stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.content-section.normal-content hr {
+  height: 50px;
+  border-top: none;
+  border-left: 0.3px solid rgba(202, 190, 190, 0.692);
+}
+
+.content-section.about .about-inner h2 span {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+.content-section.about .about-inner .reward {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.content-section.about .about-inner .reward h4 {
+  width: 70%;
+  text-align: left;
+}
+
+.content-section.about .about-inner .reward button {
+  width: 30%;
+  cursor: pointer;
+}
+
+.content-section.about .about-inner .reward button:hover {
+  background-color: #147a74;
+}
+
+.modal-pop .modal-header button {
+  cursor: pointer;
+}
+
+.modal-pop p {
+  font-size: 1rem;
+}
+
+.modal-pop .modal-inner {
+  position: relative;
+}
+
+.modal-pop .modal-inner .content-input span {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 50%;
+}
+
+.modal-pop .modal-inner .content-input span .lighter {
+  font-weight: bold;
+  color: #af9c9c;
+  font-size: 1rem;
+  padding-left: 1em;
+}
+
+.modal-pop .modal-inner h4 {
+  position: absolute;
+  top: 0.5em;
+  width: auto;
+  left: 90%;
+}
+
+.modal-pop .modal-inner h3 {
+  display: none;
+}
+
+.modal-pop .modal-inner .input-pledge {
+  width: 90%;
+}
+
+.modal-pop .modal-inner .input-pledge h3 {
+  display: block;
+  width: 60%;
+  text-align: left;
+}
+
+.modal-pop .modal-inner .input-pledge label {
+  width: 20%;
+}
+
+.modal-pop .modal-inner .input-pledge label span {
+  left: 1.5vw;
+}
+
+.modal-pop .modal-inner .input-pledge label input[type="text"] {
+  width: 80%;
+}
+
+.modal-pop .modal-inner .input-pledge button {
+  width: 20%;
+  cursor: pointer;
+}
+
+.modal-pop .modal-inner .input-pledge button:hover {
+  background-color: #147a74;
+}
+
+.modal-pop .modal-inner.display-pledge h3 {
+  display: none;
+}
+
+.modal-pop .modal-inner.display-pledge .input-pledge h3 {
+  display: block;
+}
+/*# sourceMappingURL=desktop.css.map */

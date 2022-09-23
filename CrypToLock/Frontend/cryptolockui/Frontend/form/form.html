@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout</title>
+    <link href="stylefrm.css" rel="stylesheet" type="text/css"/>
+</head>
+<body id="cnt">
+  
+    <div>
+ <form id="frm">
+   <h1 id="head">Enter your details</h1>
+   <label> Owner's Address</label>
+   <input type="text" name="tokadd" id="ownadd" /><br>
+
+   <label id="timelbl">Date & Time to be Locked</label>
+   <input id="time" type="datetime-local" name="duration" id="timetolock" />
+
+   <label>Recieptent's Address</label>
+   <input type="text" name="recadd" id="recptadd" /><br>
+
+   <label>Tokens to be locked</label>
+  <input type="number" name="nooftoken" min="1" id="nooftokens" />
+
+   <button type="submit" id="lockbtn">Lock Now</button>
+
+   <script type="text/javascript" src="CrypToLock\Frontend\cryptolockui\src\index.js"></script>
+   <script type="text/javascript" src="CrypToLock\Frontend\cryptolockui\node_modules\web3\dist\web3.min.js"></script>
+   <script type = "text/javascript" src="CrypToLock\Frontend\cryptolockui\node_modules\jquery\dist\jquery.min.js"></script>
+   <script type="text/javascript" src ="pliblockathon\CrypToLock\Frontend\cryptolockui\src\utils.js"></script>
+
+ </form>
+</div>
+</body>
+</html>

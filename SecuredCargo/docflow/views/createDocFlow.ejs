@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SecuredCargo</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../docflow/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../docflow/public/assets/vendor/gijgo/gijgo.min.css" rel="stylesheet">
+  <link href="../docflow/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+function validate()
+{
+	var Frm = document.SKForm;
+}
+
+
+async function BodyOnLoad()
+{
+	if(window.ethereum != null) {
+		//const web3 = new Web3(window.ethereum);
+		window.web3 = await new Web3(window.ethereum);
+		try {
+			await window.ethereum.enable();
+			const accounts = await window.web3.eth.getAccounts();
+		} catch (error) {
+		console.log(error)
+			alert("Web wallet not enabled - 1.")
+		}
+	}
+	else
+	{
+		alert("Web wallet not enabled - 2.")
+	}
+}
+
+
+async function CreateDocFlow()
+{
+	var Frm = document.SKForm;
+
+	const data = <%-JSON.stringify(data)%>;
+	const DocFlowId = data.DocFlowId;
+	const ProcessId = Frm.lstProcessId.value;
+	const DocFlowName = Frm.txtDocFlowName.value;
+	
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc131Ee517BB2ad814cB1622ec99C1d902a05Eaa25");
+	const accounts = await window.web3.eth.getAccounts();
+
+	await MyContract.methods.CreateDocFlow(DocFlowId, ProcessId, DocFlowName).send({from:accounts[0]}, function(error, result) {
+		if(!error)
+		{
+			var Frm = document.SKForm;
+			Frm.hdnDocFlowId.value=DocFlowId;
+			Frm.hdnProcessId.value=ProcessId;
+			Frm.submit();
+		}
+		else
+		{
+			alert(error);
+		}
+	});
+
+}
+
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		<i class="bi bi-boxes"></i>
+        <span>SecuredCargo</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+
+  <main id="main" class="margin-top-10">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/docflow/createDocFlowStep" onsubmit="return validate()">
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-5 col-md-5">
+					<div class="card card01 margin-top-20">
+						<div class="card-header">
+							Create New Document Flow 
+						</div>
+						<div class="card-body">
+
+							<div class="row mt-3">
+								<div class="col-12">
+									<label for="lstProcessId" class="form-label">Document Flow</label>
+								</div>
+								<div class="col-12">
+									<select class="form-select" id="lstProcessId" name="lstProcessId">
+										<% DocFlowProcess.forEach(function(Process){ %>
+											<option value="<%=Process.ProcessId%>"><%=Process.ProcessName%></option>
+										<%})%>
+									</select>
+								</div>
+							</div>
+
+							<div class="row mt-3">
+								<div class="col-12">
+									<label class="form-label">Name of the Document <span class="form-label01"></span></label>
+								</div>
+								<div class="col-12">
+									<input type="text" class="form-control" id="txtDocFlowName" name="txtDocFlowName" value="">
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center mt-2">
+				<input type="hidden" name="hdnDocFlowId" id="hdnDocFlowId" value="">
+				<input type="hidden" name="hdnProcessId" id="hdnProcessId" value="">
+				<button type="button" class="btn btn-primary" onclick="CreateDocFlow()">Create</button>
+			</div>
+
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>SecuredCargo</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../docflow/public/assets/abi/DocFlowABI.json"></script>
+  <script src="../docflow/public/assets/js/web3.min.js"></script>
+  <script src="../docflow/public/assets/vendor/jquery/jquery-3.3.1.slim.min.js"></script>
+  <script src="../docflow/public/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../docflow/public/assets/vendor/aos/aos.js"></script>
+  <script src="../docflow/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../docflow/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../docflow/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../docflow/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../docflow/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../docflow/public/assets/vendor/gijgo/gijgo.min.js" type="text/javascript"></script>
+  <script src="../docflow/public/assets/js/main.js"></script>
+
+</body>
+
+</html>

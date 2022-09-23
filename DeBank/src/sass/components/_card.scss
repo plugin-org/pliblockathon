@@ -1,0 +1,77 @@
+.card {
+  background-color: black;
+  width: max-content;
+  border-radius: 1rem;
+  &-image {
+    img {
+    }
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    .card-heading {
+      display: flex;
+      justify-content: space-between;
+      .card-series {
+        color: var(--orange);
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+      .card-top {
+        color: var(--accent-color3);
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+    }
+    .card-details {
+      display: flex;
+      justify-content: space-between;
+      color: var(--accent-color1);
+      .card-title {
+      }
+      .card-price {
+        display: flex;
+        gap: 1rem;
+        img {
+        }
+        h4 {
+        }
+      }
+    }
+    .card-sub-details {
+      display: flex;
+      justify-content: space-between;
+      span {
+        color: var(--accent-color3);
+        font-size: 0.9rem;
+      }
+    }
+    .card-button {
+      margin-left: 8rem;
+      font-size: 1rem ;
+      color: var(--accent-color1);
+      background-color: var(--background);
+      font-weight: bold;
+      margin-top: 1.4rem;
+      padding: 1rem 3rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+      border: solid 3px transparent;
+      background-image: linear-gradient(
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(101deg, var(--pink), var(--blue));
+      background-origin: border-box;
+      background-clip: content-box, border-box;
+      box-shadow: 2px 1000px 1px var(--background) inset;
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+}

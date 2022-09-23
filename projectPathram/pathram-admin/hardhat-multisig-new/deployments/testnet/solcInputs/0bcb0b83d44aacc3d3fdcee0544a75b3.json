@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/MultiSignatureWallet.sol": {
+      "content": "//SPDX-License-Identifier: MIT\r\npragma solidity ^0.6.12;\r\n\r\n//for xdcpay apothem\r\n// [\"0x00280c5a941f151db957a80d57388fec339dddeb\",\"0x5c170619944fd791bcefe300c924b8f2889093a2\"]\r\n\r\ncontract MultiSignatureWallet {\r\n    \r\n  //enum test{Accepted,Rejected,Pending} \r\n  //executed bool is to check whether all owners have seen the transaction(event)\r\n    struct Transaction {\r\n      bool executed;\r\n      bool accepted;\r\n      address destination;\r\n      uint value;\r\n      string data;\r\n    }\r\n\r\n    event Received(address a, uint i);\r\n\r\n    event Deposit(address indexed sender, uint value);\r\n    event Submission(uint indexed transactionId);\r\n    event Confirmation(address indexed sender, uint indexed transactionId);\r\n    event Execution(uint indexed transactionId);\r\n    event ExecutionFailure(uint indexed transactionId);\r\n\r\n    /// @dev Fallback function allows to deposit ether.\r\n    fallback()\r\n    \texternal\r\n        payable\r\n    {\r\n        if (msg.value > 0) {\r\n            emit Deposit(msg.sender, msg.value);\r\n\t}\r\n    }\r\n\r\n    receive() external payable {\r\n        emit Received(msg.sender, msg.value);\r\n    }\r\n\r\n\r\n    address[] public owners;\r\n    uint public required;\r\n    mapping (address => bool) public isOwner;\r\n    mapping (address => bool) public isDeployer;\r\n\r\n\r\n    uint public transactionCount;\r\n    mapping (uint => Transaction) public transactions;\r\n\r\n    mapping (uint => mapping (address => bool)) public confirmations;\r\n\r\n    mapping (uint => mapping (address => bool)) public acceptance;\r\n    //temp\r\n    \r\n    string public eventTypeName;\r\n    address public deployer;\r\n\r\n    constructor(address[] memory _owners,string memory _eventTypeName) public \r\n        {\r\n        for (uint i=0; i<_owners.length; i++) {\r\n            isOwner[_owners[i]] = true;\r\n        }\r\n        owners = _owners;\r\n        required = _owners.length;\r\n        eventTypeName = _eventTypeName;\r\n        deployer = msg.sender;\r\n        isDeployer[deployer] = true;\r\n    }\r\n\r\n    // modifier validRequirement(uint ownerCount, uint _required) {\r\n    //     if (_required > ownerCount || _required == 0 || ownerCount == 0)\r\n    //         revert();\r\n    //     _;\r\n    // }  \r\n\r\n    //submit transaction - eventId, value=0, admin address\r\n    function submitTransaction(address destination, string memory eventId) \r\n        public payable\r\n        returns (uint transactionId) \r\n    {\r\n        require(isOwner[msg.sender] || isDeployer[msg.sender]);\r\n        transactionId = addTransaction(destination, 0, eventId);\r\n        confirmTransaction(transactionId);\r\n    }\r\n\r\n\r\n    /// @dev Allows an owner to confirm a transaction.\r\n    /// @param transactionId Transaction ID.\r\n    function confirmTransaction(uint transactionId)\r\n        public\r\n    {\r\n        require(isOwner[msg.sender]);\r\n        require(transactions[transactionId].destination != address(0));\r\n        require(confirmations[transactionId][msg.sender] == false);\r\n        confirmations[transactionId][msg.sender] = true;\r\n        acceptance[transactionId][msg.sender] = true;\r\n        emit Confirmation(msg.sender, transactionId);\r\n        executeTransaction(transactionId);\r\n    }\r\n\r\nfunction confirmTransactionReject(uint transactionId)\r\n        public\r\n    {\r\n        require(isOwner[msg.sender]);\r\n        require(transactions[transactionId].destination != address(0));\r\n        require(confirmations[transactionId][msg.sender] == false);\r\n        confirmations[transactionId][msg.sender] = true;\r\n        acceptance[transactionId][msg.sender] = false;\r\n        emit Confirmation(msg.sender, transactionId);\r\n        executeTransaction(transactionId);\r\n    }\r\n\r\n    /// @dev Allows an owner to revoke a confirmation for a transaction.\r\n    /// @param transactionId Transaction ID.\r\n    function revokeConfirmation(uint transactionId) public {}\r\n\r\n    /// @dev Allows anyone to execute a confirmed transaction.\r\n    /// @param transactionId Transaction ID.\r\n    function executeTransaction(uint transactionId)\r\n        public\r\n    {\r\n        require(transactions[transactionId].executed == false);\r\n        if (isConfirmed(transactionId)) {\r\n            uint flag=0;\r\n            for(uint i=0;i<required;i++)\r\n            {\r\n                if(acceptance[transactionId][owners[i]] == false)\r\n                    flag=1;\r\n            }           \r\n\r\n            Transaction storage t = transactions[transactionId];\r\n            if(flag==0)\r\n                t.accepted = true;\r\n            t.executed = true;\r\n\r\n            (bool success,) = t.destination.call.value(t.value)(\"\");\r\n            if (success)\r\n                emit Execution(transactionId);\r\n            else {\r\n                emit ExecutionFailure(transactionId);\r\n                t.executed = false;\r\n            }\r\n        }\r\n    }\r\n\t\t/*\r\n\t\t * (Possible) Helper Functions\r\n\t\t */\r\n    /// @dev Returns the confirmation status of a transaction.\r\n    /// @param transactionId Transaction ID.\r\n    /// @return Confirmation status.\r\n    function isConfirmed(uint transactionId)\r\n        public\r\n        view\r\n        returns (bool)\r\n    {\r\n        uint count = 0;\r\n        for (uint i=0; i<owners.length; i++) {\r\n            if (confirmations[transactionId][owners[i]])\r\n                count += 1;\r\n            if (count == required)\r\n                return true;\r\n        }\r\n    }\r\n\r\n\r\n    function addTransaction(address destination, uint value, string memory eventId)\r\n        internal\r\n        returns (uint transactionId)\r\n    {\r\n        transactionId = transactionCount;\r\n        transactions[transactionId] = Transaction({\r\n            destination: destination,\r\n            value: value,\r\n            data: eventId,\r\n            executed: false,\r\n            accepted:false\r\n        });\r\n        transactionCount += 1;\r\n        emit Submission(transactionId);\r\n    }\r\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -1,0 +1,85 @@
+
+#head{
+    
+    padding: 20px;
+     padding-bottom: 10px;
+     letter-spacing: 2px;
+     margin-top: 0px;
+     padding-left: 50px;
+     padding-top: 20px;
+    
+}
+
+#header{
+    background-color: rgb(41, 48, 64,0.9);
+    padding-bottom: 20px;
+    margin: -10px;
+    border:solid;
+    margin-top:-30px;
+
+}
+html{
+    background-image: linear-gradient(to right top, #62b7bb, #5bb1cf, #72a7da, #999ad6, #bd8ac2);
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(assets/img/frost.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+  
+
+}
+#menu{
+    color: white;
+    list-style: none;
+    float: right;
+    margin: 0;
+    padding: 0;
+    display:flex;
+}
+.nav {
+    background: #fff;
+    margin-left: 0px;
+
+}
+.nav a{
+    text-decoration: none;
+    padding: 14px 10px;
+    text-align: center;
+    color:white;
+    font-size: 1.3em;
+    display: block;
+    float: right;
+    margin-top: -50px;
+    margin-right: 20px;
+
+}
+.nav a:hover{
+    background-color: rgb(62, 189, 138);
+    border: solid;
+    border-color:transparent;
+    border-radius:20px;
+    color:black;
+
+
+}
+#teamname{
+    color:white;
+    margin-left:50px;
+    margin-top: -20px;
+}
+fa fa-home:hover{
+    color: white;
+}
+#hm:hover{
+    color: black;
+}
+#message{
+    color:white;
+    font-size: 16x;
+    align-items: center;   
+    margin-top: 120px;
+    text-align: center;
+    border-radius: 15px;
+    letter-spacing: 2px;
+    padding: 20px;
+}

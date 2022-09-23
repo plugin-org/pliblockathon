@@ -1,0 +1,374 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<!--<link href="index01.css" rel="stylesheet" type="text/css" />-->
+</head>
+<body>
+    <div class="cont">
+		
+		<p class="cv">Certificate Verification</p>
+        <label for="RegisterNumber">Register Number</label>
+        <input type="text" id="registerno" name="" value="" placeholder="Enter register number" required>
+        <p id = "regdisplay"></p>
+
+        <label for="Name">Name</label>
+		<input type="text" id="name" name="" value="" placeholder="Enter your name" required>
+        <p id="namedisplay"></p>
+        
+        <label for="Dept">Department</label>
+        <input type="text" id="dept" name="" value="" placeholder="Enter your Department" required>
+        <p id = "deptdisplay"></p>
+
+        <label for="YearOfAdmission">Year Of Admission</label>
+		<input type="text" id="yoa" name="" value="" placeholder="Enter year of admission" required>
+        <p id= "yoadisplay"></p>
+
+        <button id="save">Save</button>
+	  
+    </div>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+    if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
+        }
+    </script>
+    <script>
+        var contract;
+        $(document).ready(function() //whenever page is ready create & initialize object of web3
+        {
+            //web3 = new Web3(web3.currentProvider);  //InjectedWeb3
+            //Web3 = require('web3');
+            var address = "0xe9cA7a8A0099FE2c6A7904ac6871D69f056e3843";
+            var abi =[
+	{
+		"inputs": [],
+		"name": "count",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "reg",
+				"type": "uint256"
+			}
+		],
+		"name": "getDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_Dept",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_yoa",
+				"type": "string"
+			}
+		],
+		"name": "insertStudent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_sem",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_hash",
+				"type": "string"
+			}
+		],
+		"name": "insert_sem_hash",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "sem",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "semno",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "hash",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "students",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "Dept",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "yoa",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "tc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "cc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "pc",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			}
+		],
+		"name": "view_cc",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			}
+		],
+		"name": "view_pc",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_semno",
+				"type": "uint256"
+			}
+		],
+		"name": "view_sem",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			}
+		],
+		"name": "view_tc",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+] ;
+            contract = new web3.eth.Contract(abi, address);   //ABI , Address
+/*
+            contract.methods.getRegister().call().then(function(reg)
+            {
+                $('#regdisplay').html(reg);
+            })
+            contract.methods.getName().call().then(function(name)
+            {
+                $('#namedisplay').html(name);
+            })
+            contract.methods.getDept().call().then(function(Dept)
+            {
+                $('#deptdisplay').html(Dept);
+            })
+            contract.methods.getyoa().call().then(function(yoa)
+            {
+                $('#yoadisplay').html(yoa);
+            })*/
+        })
+
+        $('#save').click(function()
+        {
+			alert("Hello! I am an alert box1!!");
+            var reg=0;
+            reg=parseInt($('#registerno').val());
+			alert("Hello! I am an alert box2!!");
+            var nam = document.getElementById('name').value;
+			alert("Hello! I am an alert box3!!");
+            var dep = document.getElementById('dept').value;
+			alert("Hello! I am an alert box4!!");
+            var YearOA= document.getElementById('yoa').value;
+			alert("Hello! I am an alert box5!!");
+            web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+                alert("Hello! I am an alert box6!!");
+				var acc=accounts[0];
+				alert("Hello! I am an alert box7!!");
+				return contract.methods.insertStudent(reg,nam,dep,YearOA).send({from: acc});
+            }).then(function(tx){
+				alert("Hello! I am an alert boxfinal!!");
+                console.log(tx);
+            }).catch(function(tx){
+				alert("Hello! I am an alert boxfinal!!");
+                console.log(tx);
+            })
+        })
+    </script>
+</body>
+</html>

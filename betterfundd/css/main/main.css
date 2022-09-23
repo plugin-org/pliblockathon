@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700;900&display=swap");
+html, body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+main {
+  display: block;
+  width: 100%;
+  z-index: 2;
+}
+
+.content-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  max-width: 700px;
+  margin: auto;
+  padding: 1.5em;
+  margin-top: -4em;
+  margin-bottom: 2em;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 0.3em rgba(77, 69, 69, 0.425);
+          box-shadow: 0 0 0.3em rgba(77, 69, 69, 0.425);
+  border-radius: 10px;
+}
+
+.content-section > img {
+  margin-top: -2.5em;
+}
+
+.content-section h1 {
+  color: #000;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.content-section p {
+  color: #777777;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  display: block;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.content-section .mark-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.content-section .mark-btn button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 40px;
+  border: none;
+}
+
+.content-section .mark-btn button:first-child {
+  color: #fff;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.8rem;
+  width: 70%;
+  padding: 1.5em;
+  background-color: #3ab5aa;
+}
+
+.content-section .mark-btn button:last-child {
+  width: auto;
+  background-color: transparent;
+}
+
+.content-section .mark-btn button:last-child span {
+  display: none;
+}
+
+.content-section.normal-content {
+  margin-top: 0;
+}
+
+.content-section.normal-content .stats {
+  width: 100%;
+}
+
+.content-section.normal-content h2 {
+  color: #000;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.content-section.normal-content h2 span {
+  color: #c4afaf;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  padding-top: 0.5em;
+}
+
+.content-section.normal-content hr {
+  width: 30%;
+  border: none;
+  border-top: 0.1px solid rgba(219, 210, 210, 0.692);
+  background-color: transparent;
+}
+
+.content-section.normal-content .progress {
+  width: 90%;
+  position: relative;
+  height: 20px;
+  margin: auto;
+  margin-bottom: 1em;
+  background-color: #ebe5e5;
+  border-radius: 30px;
+}
+
+.content-section.normal-content .progress::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 20px;
+  background-color: #3bb4ad;
+  border-radius: 30px;
+}
+
+.content-section.about h2,
+.content-section.about p {
+  text-align: left;
+  line-height: 1.5;
+}
+
+.content-section.about .about-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 90%;
+  margin-top: 1em;
+  padding: 1em;
+  border: 1px solid rgba(66, 62, 62, 0.337);
+  border-radius: 15px;
+}
+
+.content-section.about .about-inner h2 {
+  font-size: 1rem;
+}
+
+.content-section.about .about-inner h2 span {
+  text-align: left;
+}
+
+.content-section.about .about-inner .reward {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.content-section.about .about-inner .reward h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin: 0.1em;
+  font-size: 2.5rem;
+}
+
+.content-section.about .about-inner .reward h4 span {
+  color: #998787;
+  padding-left: 0.5em;
+  font-size: 1rem;
+}
+
+.content-section.about .about-inner .reward button {
+  color: #fff;
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+  padding: 1.5em;
+  margin-top: 1em;
+  width: 80%;
+  border-radius: 30px;
+  background-color: #3ab5aa;
+  border: none;
+}
+/*# sourceMappingURL=main.css.map */
