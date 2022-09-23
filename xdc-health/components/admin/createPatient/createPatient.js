@@ -3,21 +3,33 @@ import Scaffold from "../../utils/scaffold";
 import { links } from "../config"
 import Button from '../../utils/button';
 import { useEffect, useState } from "react";
+import { useWeb3 } from "@3rdweb/hooks";
+import { getContract, loadWeb3 } from "../../abi";
 
 
 
 export default function AdminCreatePatient() {
-    let today = new Date();
+    const { address, connectWallet } = useWeb3();
+
+    useEffect(()=>{
+        // connect to the wallet
+        async function main(){
+            await connectWallet("injected");
+        }
+        main();
+    }, [])
 
     const [adhaar, setAdhaar] = useState("");
     const [name, setName] = useState("");
     const [dob, setDob] = useState("");
     const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
+    const [geoAddress, setGeoAddress] = useState("");
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(adhaar, name, dob, phone, address);
+        await loadWeb3()
+        const cont = await getContract()
+        await cont.methods.createPatient(adhaar, name, dob, phone, geoAddress).send({from: address})
     }
 
     return (
@@ -29,7 +41,7 @@ export default function AdminCreatePatient() {
                     <Field label="Name" type="text" onChange={(e) => setName(e.target.value)} />
                     <Field label="Date of Birth" type="date" onChange={(e) => setDob(e.target.value)} />
                     <Field label="Phone Number" type="tel" onChange={(e) => setPhone(e.target.value)} />
-                    <Field label="Address" type="text" onChange={(e) => setAddress(e.target.value)} />
+                    <Field label="Address" type="text" onChange={(e) => setGeoAddress(e.target.value)} />
                     <Button className="mt-5" onClick={handleSubmit}>Submit</Button>
                 </form>
             </div>
