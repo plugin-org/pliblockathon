@@ -1,6 +1,5 @@
-# PLIBLOCKHAIN HACKATHON
+# PLI BLOCKCHAIN HACKATHON
 <hr>
-<br>
 
 This is a project which is based on blockchain integration inside unity. Now adays unity is used to create metaverse and p2e games. By Which bigger crypto compnaies are selling the crypto's world wide. But there are only 10% of whole blockchain developers do P2E based games. So, me and my team used this chance to create a developer friendly SDK which use's NODE API for Backend for connecting wallets insdie Apothem Network. We have initiated this project based on real life SDK like ChainSafe which is use in ethereum network.
 
@@ -55,8 +54,6 @@ where ever you want first integrate the namespace ``` using XDC3;```. Then we ca
 #  XDC20.TransferXDCAPI(string toAddress, string value, this)
   - By using function we can transfer XDC with API. Like before **XDC20.TransferXRC20API(string toAddress, string ContractAddress, string value, this)** there will be IMRS server create a pattern and returns to Gaming Dapp. It will inject the url into browser then it will do the transaction in the XdcPay.
 
-<br>
-<br>
 <br>
 
 ## How and Why we build it:
