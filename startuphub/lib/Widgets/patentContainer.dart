@@ -10,7 +10,7 @@ class patentContainer extends StatelessWidget {
     return Card(
       elevation: 5,
       shadowColor: Colors.black,
-      color: Color.fromARGB(255, 0, 106, 255),
+      color: Color.fromARGB(255, 119, 204, 250),
       child: SizedBox(
         width: 300,
         height: 200,

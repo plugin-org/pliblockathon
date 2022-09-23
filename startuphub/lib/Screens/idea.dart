@@ -3,15 +3,29 @@ import 'package:startup_hub/Screens/home.dart';
 import '../Widgets/widgets.dart';
 import '../Widgets/constants.dart';
 import '../Widgets/roundButton.dart';
+import '../Services/functions.dart';
 
-class createjob extends StatelessWidget {
-  const createjob({super.key});
-  static const String id = 'createjob';
+class patent extends StatefulWidget {
+  static const String id = 'patent';
+  const patent({super.key});
+
+  @override
+  State<patent> createState() => _patentState();
+}
+
+class _patentState extends State<patent> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String startupdescription = "";
-    String startupname = "";
     return Scaffold(
       appBar: appBar(),
       drawer: apdrawer(),
@@ -21,15 +35,20 @@ class createjob extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'Hub Ideas',
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 103, 35, 125)),
+            ),
             SizedBox(
               height: 30,
             ),
             TextField(
-              onChanged: (value) {
-                startupname = value;
-              },
-              decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter the startup name'),
+              controller: titleController,
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: 'Enter the idea'),
             ),
             SizedBox(
               height: 20,
@@ -38,25 +57,21 @@ class createjob extends StatelessWidget {
               style: TextStyle(fontSize: 10),
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              onChanged: (value) {
-                startupdescription = value;
-              },
+              controller: descriptionController,
               decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter the Job Description.'),
+                  hintText: 'Enter the  Description.'),
             ),
             SizedBox(
               height: 20,
             ),
             RoundButton(
               color: Colors.lightBlueAccent,
-              title: 'post your job',
+              title: 'post',
               onPressed: () {
+                Services().addStartup(
+                    titleController.text, descriptionController.text);
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => Home()),
-                  ),
-                );
+                    context, MaterialPageRoute(builder: ((context) => Home())));
               },
             ),
           ],
