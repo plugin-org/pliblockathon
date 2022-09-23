@@ -575,6 +575,7 @@
     display: block;
     border-radius: 3px;
     text-transform: uppercase;
+    border-radius: 25px;
 }
 
 /* dashboard card */
@@ -648,4 +649,19 @@
     width: 120ch;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+/* connect */
+.booking-form .connect-btn {
+    color: #101113;
+    background-color: #093993;
+    font-weight: 700;
+    height: 50px;
+    border: none;
+    width: 100%;
+    display: block;
+    /* border-radius: 5px; */
+    /* text-transform: uppercase; */
+    border-radius: 25px;
+    color: #fff
 }
