@@ -1,57 +1,56 @@
 # PLI BLOCKCHAIN HACKATHON
-<hr>
+<br>
 
 This is a project which is based on blockchain integration inside unity. Now adays unity is used to create metaverse and p2e games. By Which bigger crypto compnaies are selling the crypto's world wide. But there are only 10% of whole blockchain developers do P2E based games. So, me and my team used this chance to create a developer friendly SDK which use's NODE API for Backend for connecting wallets insdie Apothem Network. We have initiated this project based on real life SDK like ChainSafe which is use in ethereum network.
 
 # How to use it:
-<hr>
+<br>
 
 So, First create a unity project inside the Unity hub. Once created import the TestVersion0.0.2.unity package inside it. After that run the node server and index.html at 4000 and 5500.
 
 
 # Function Call's:
-<hr>
+<br>
 
 where ever you want first integrate the namespace ``` using XDC3;```. Then we can use those easy function's to intreact with blockchin. We are also able to Upload and Download Data inside blockchain.
 
 # WALLET MANAGER FUNCTION's:
-<hr>
-# XDC3.WalletManager.CreateWallet(string words, string password)
+<br>
+**XDC3.WalletManager.CreateWallet(string words, string password):**
   - By using this function we can able to create wallet inside unity. It will also save the memonic key phrase. when we want we can use this menomic to get he privatekey using password.
 
 
-# XDC3.WalletManager.GenerateMemonic()
+**XDC3.WalletManager.GenerateMemonic()**
   - By using this function we can create memonic key phrase. it will be a 12 strings hash. by which we can generate a new private key
 
 
-# XDC3.WalletManager.ConnectWallet(string memonic, string password);
+**XDC3.WalletManager.ConnectWallet(string memonic, string password);**
   - By using this function we can connect existing wallet inside the unity using menomic and password. it will give us the Privatekey of the wallet by combing the menomic and password.
 
-# XDC3.WalletManager.GetXDCBalance(string account);
+**XDC3.WalletManager.GetXDCBalance(string account);**
 
   - By Using this function we can get the XDC balance in wei. we want to pass address inorder to get the balance from the XDC apothem network.
 
-# XDC3.WalletManager.GetMenomicFromTxt();
+**XDC3.WalletManager.GetMenomicFromTxt();**
 
   - By using this function we can select the menomic file from the computer and store the menomic for temp in local storage for one time use. Once you used it the menomic will automatically get cleared.
 
 
 # XRC20 FUNCTION:
-<hr>
-
-# await XDC20.GetXDC20Balance(string account, string contract)
+<br>
+**await XDC20.GetXDC20Balance(string account, string contract)**
   - By using this function we can get any XRC20 standard balance by sending wallet address to the blockchain.
 
-# XDC20.TransferXDC(string account, string password, value)
+**XDC20.TransferXDC(string account, string password, value)**
   - By using this function we can transfer XDC value from unity without any support of any wallets using menomics and passwords.
 
 
 # API CALLED FUNCTION:
 
-# XDC20.TransferXRC20API(string toAddress, string ContractAddress, string value, this)
+**XDC20.TransferXRC20API(string toAddress, string ContractAddress, string value, this)**
   - By using this function we can transfer any erc20 you have using the XinPay Wallet. It will send a API request IMRS(Intermidate Redirect Server) which will create a pattern with a single session to the Game Dapp. the Game Dapp SDK will open the URL in the browser where the XDCPay wallet is located.
 
-#  XDC20.TransferXDCAPI(string toAddress, string value, this)
+**XDC20.TransferXDCAPI(string toAddress, string value, this)**
   - By using function we can transfer XDC with API. Like before **XDC20.TransferXRC20API(string toAddress, string ContractAddress, string value, this)** there will be IMRS server create a pattern and returns to Gaming Dapp. It will inject the url into browser then it will do the transaction in the XdcPay.
 
 <br>
