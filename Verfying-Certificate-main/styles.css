@@ -1,0 +1,29 @@
+*{
+    display:border-box;
+}
+label[for=RegisterNumber]{
+    position :relative;
+    left:30%;
+    margin-top :20%;
+    font-size: large;
+}
+label[for=Name]{
+    position :relative;
+    left:40%;
+    margin-top :26%;
+    font-size: large; 
+}
+.box input[type="number"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 3px solid #0367fd;
+    padding: 14px 10px;
+    width: 220px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25px;
+}

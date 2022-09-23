@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Certificate Upload Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<style>
+		/*.mt-0{
+            margin-top: 25 !important;
+        }*/
+		.myDiv {
+			display: none;
+		}
+
+		#showsemm {
+			color: blue;
+			border: 1px solid blue;
+			padding: 3px;
+		}
+	</style>
+	<script>
+		$(document).ready(function () {
+			$('input[type="radio"]').click(function () {
+				var demovalue = $(this).val();
+				$("div.myDiv").hide();
+				$("#show" + demovalue).show();
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<!--<div class="mt-0"></div>-->
+	<div class="col-md-8 offset-md-4 p-5">
+		<h3 class="col-md-10 offset-md-1">Admin End</h3>
+		<form>
+			<div class="form-group row p-3">
+				<label for="RegisterNumber" class="col-sm-2 col-form-label">Register Number</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" class="form-control-plaintext" id="registerno" name=""
+						value="" placeholder="Enter register number">
+				</div>
+			</div>
+			<!--class="text-center"-->
+			<p>Choose an option to select the certificate</p>
+
+			<div class="form-inline">
+				<div class="form-group mb-2">
+					<!--default checked attr not included-->
+					<input class="form-check-input" type="radio" id="consolidated-cert" name="demo" value="One">
+					<label class="form-check-label" for="Consolidated certificate">
+						Consolidated Certificate
+					</label>
+				</div>
+				<div class="form-group mx-sm-3 mb-2">
+					<input class="form-check-input" type="radio" id="transfer-cert" name="demo" value="Two" />
+					<label class="form-check-label" for="Transfer certificate">
+						Transfer Certificate
+					</label>
+				</div>
+			</div>
+
+			<div class="form-inline">
+				<div class="form-group mb-2">
+					<!--default checked attr not included-->
+					<input class="form-check-input" type="radio" id="Provisional-cert" name="demo" value="Three">
+					<label class="form-check-label" for="Prov certificate">
+						Provisional Certificate&nbsp;&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group mx-sm-3 mb-2">
+					<input class="form-check-input" type="radio" id="Semester-cert" name="demo" value="semm" />
+					<label class="form-check-label" for="Sem certificate">
+						Semester Certificate
+					</label>
+					<!--<br><br>-->
+					<div id="showsemm" class="myDiv">
+						<strong>Choose a semester</strong>
+					<!--<br><br>-->	
+					<!--<label for="Semester" id="Semester">Semester</label>-->	
+						<select id="Semselect">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+						</select>
+						<br><br>
+
+					</div>
+
+				</div>
+			</div>
+			<!--<input type="button" id="btn-view" value="View Hash">-->
+			<!-- <div class="col-md-5 text-center">
+				<button id="btn-view-hash" type="button" class="btn btn-outline-primary">View Hash</button>
+
+			</div>
+			<span><i>The hash is : </i></span><span id="hashdisplay"></span> -->
+			<div class="p-3 center">
+                <div class="custom-file">
+                    <label class="custom-file-label col-sm-3" for="inputGroupFile04">Choose file</label>
+                    <input type="file" id="upload-file" class="custom-file-input">
+                </div>
+            </div>
+            <div class="col-md-5 text-center p-1">
+                <button class="btn btn-outline-secondary" id="btn-upload" type="button">Upload</button>
+            </div>
+
+            <!-- <br>
+            <div class="col-md-5 text-center">
+                <button id="btn-verify" type="button" class="btn btn-outline-primary">Verify</button>
+            </div> -->
+		</form>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="https://unpkg.com/ipfs-http-client/dist/index.min.js"></script>
+    <script>
+        console.log("IpfsHttpClient", window.IpfsHttpClient)
+
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
+        }
+    </script>
+	<script>
+
+        // const parse = require('node-html-parser');
+        var contract;
+        const projectId = "2EqUYbenG4nsIcKlBLxnsDkm0vB"
+        const projectSecretKey = "85811c6157e70693179976335020d1d7"
+        const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
+        $(document).ready(function () //whenever page is ready create & initialize object of web3
+        {
+            var address = "0xECead3F89434883254f62F89eC21b2d199A0acCe";
+            var abi =;
+            contract = new web3.eth.Contract(abi, address);   //ABI , Address
+
+        })
+		$('#btn-upload').click(async function () {
+            const ipfs = window.IpfsHttpClient.create({
+                host: 'ipfs.infura.io', port: 5001, protocol: 'https', headers: {
+                    authorization: authorization,
+                },
+            }) // Connect to IPFS
+
+            const photo = document.getElementById("upload-file");
+            const fileres = await ipfs.add(photo.files[0])
+            console.log(fileres);
+            var hash = fileres.path; //HASH
+            console.log(hash);
+
+		
+			var reg = 0;
+            reg = parseInt($('#registerno').val()); //REG
+            web3.eth.getAccounts().then(function (accounts) { //requestAccounts
+                var acc = accounts[0];
+                if(document.getElementById('consolidated-cert').checked == true){
+                    alert('cc uploaded');
+                    return contract.methods.set_cchash(reg, hash).send({ from: acc });
+                }
+                else if(document.getElementById('transfer-cert').checked == true){
+                    alert('tc uploaded');
+                    return contract.methods.set_tchash(reg, hash).send({ from: acc });
+                }
+                else if(document.getElementById('Provisional-cert').checked == true){
+                    alert('pc uploaded');
+                    return contract.methods.set_pchash(reg, hash).send({ from: acc });
+                }else if(document.getElementById('Semester-cert').checked == true){
+                    alert('sem c uploaded');
+                    var sem = document.getElementById('Semselect').value;
+                    return contract.methods.insert_sem_hash(reg, sem , hash).send({ from: acc });
+                }
+                
+            }).then(function (tx) {
+                console.log(tx);
+                alert("Data saved successfully");
+            }).catch(function (tx) {
+                console.log(tx);
+            })
+        });
+			 
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

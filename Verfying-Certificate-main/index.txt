@@ -1,0 +1,191 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="RegisterNumber">Register Number</label>
+        <input type="text" id="registerno" name="" value="" placeholder="Enter register number">
+        <p id = "regdisplay"></p>
+
+        <label for="Name">Name</label>
+		<input type="text" id="name" name="" value="" placeholder="Enter your name">
+        <br>
+        <p id="namedisplay"></p>
+        <br>
+
+        <label for="Semester">Semester</label>
+			<select id="Semselect">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+			</select>
+			<br>
+			<label for="Browse">Browse</label>
+			<input type="file">
+            <br>
+            <p id="semdisplay"></p>
+            <br>
+        <button id="save">Save</button>
+        
+    </div>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+    if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
+        }
+    </script>
+    <script>
+        var contract;
+        $(document).ready(function() //whenever page is ready create & initialize object of web3
+        {
+            //web3 = new Web3(web3.currentProvider);  //InjectedWeb3
+            //Web3 = require('web3');
+            var address = "0x5ED8dE1B330B9E1ac283D83880F7FC1965288102";
+            var abi = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "_sturegno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "_stuName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_semno",
+				"type": "string"
+			}
+		],
+		"name": "Details",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getRegister",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getSemesterNo",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+            contract = new web3.eth.Contract(abi, address);   //ABI , Address
+
+            contract.methods.getRegister().call().then(function(sturegno)
+            {
+                $('#regdisplay').html(sturegno);
+            })
+            contract.methods.getName().call().then(function(stuName)
+            {
+                $('#namedisplay').html(stuName);
+            })
+            contract.methods.getSemesterNo().call().then(function(semno)
+            {
+                $('#semdisplay').html(semno);
+            })
+        })
+
+        $('#save').click(function()
+        {
+            var reg=0;
+            reg=parseInt($('#registerno').val());
+            var nam = document.getElementById('name').value;
+            var sem = document.getElementById('Semselect').value;
+            web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+                var acc=accounts[0];
+                return contract.methods.Details(reg,nam,sem).send({from: acc});
+            }).then(function(tx){
+                console.log(tx);
+            }).catch(function(tx){
+                console.log(tx);
+            })
+        })
+       /* $('#save').click(function()
+        {
+            var nam = document.getElementById('name').value;
+            web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+                var acc=accounts[0];
+				let a1=contract.methods.name(nam).send({from:acc});
+                //return contract.methods.name(nam).send({from:acc});
+				return {a1};
+            }).then(function(tx){
+                console.log(tx);
+            }).catch(function(tx){
+                console.log(tx);
+            })
+        })  
+		$('#save').click(function()
+        {
+			var sem = document.getElementById('Semselect').value;
+            web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+                var acc=accounts[0];
+				//let a2=contract.methods.Semester(sem).send({from:acc});
+                return contract.methods.Semester(sem).send({from:acc});
+            }).then(function(tx){
+                console.log(tx);
+            }).catch(function(tx){
+                console.log(tx);
+            })
+        }) */ 
+ 
+    </script>
+</body>
+</html>

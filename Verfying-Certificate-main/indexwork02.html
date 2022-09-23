@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Certificate Upload Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<style>
+		.myDiv {
+			display: none;
+		}
+
+		#showOne {
+			color: red;
+			border: 1px solid red;
+			padding: 10px;
+		}
+
+		#showTwo {
+			color: green;
+			border: 1px solid green;
+			padding: 10px;
+		}
+
+		#showThree {
+			color: blue;
+			border: 1px solid blue;
+			padding: 10px;
+		}
+	</style>
+	<script>
+		$(document).ready(function () {
+			$('input[type="radio"]').click(function () {
+				var demovalue = $(this).val();
+				$("div.myDiv").hide();
+				$("#show" + demovalue).show();
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<!--<form id="MyForm" action="" method="post">-->
+	<label for="RegisterNumber">Register Number</label>
+	<input type="text" id="registerno" name="" value="" placeholder="Enter register number">
+	<h2>Choose an option to select a certificate</h2>
+	<input type="radio" id="consolidated-cert" name="demo" value="One" />
+	<label for="Consolidated certificate">Consolidated Certificate</label>
+	<input type="radio" id="transfer-cert" name="demo" value="Two" />
+	<label for="Transfer certificate">Transfer Certificate</label>
+	<input type="radio" id="Provisional-cert" name="demo" value="Three" />
+	<label for="Prov certificate">Provisional Certificate</label>
+	<input type="radio" id="Semester-cert" name="demo" value="semm">
+	<label for="Sem certificate">Semester Certificate</label>
+	<br><br>
+	<div id="showsemm" class="myDiv">
+		<strong>Choose a semester</strong>
+		<br><br>
+
+		<label for="Semester" id="Semester">Semester</label>
+		<select id="Semselect">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+		</select>
+		<br><br>
+
+	</div>
+	<!--<input type="button" id="btn-view" value="View Hash">-->
+	<button id="btn-view-hash">View Hash</button>
+	<p id="hashdisplay"></p>
+	<!--</form>-->
+
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script>
+		if (typeof web3 !== 'undefined') {
+			web3 = new Web3(web3.currentProvider);
+		} else {
+			web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
+		}
+	</script>
+	<script>
+		var contract;
+		$(document).ready(function () //whenever page is ready create & initialize object of web3
+		{
+			var address = "0xBf4B9a0ba219cc7E4002BE53E007Ae7c47c18f6b";
+			var abi =[
+	{
+		"inputs": [],
+		"name": "count",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "reg",
+				"type": "uint256"
+			}
+		],
+		"name": "getDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_Dept",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_yoa",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_tc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_cc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_pc",
+				"type": "string"
+			}
+		],
+		"name": "insertStudent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_sem",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_hash",
+				"type": "string"
+			}
+		],
+		"name": "insert_sem_hash",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "sem",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "semno",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "hash",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "students",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "Dept",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "yoa",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "tc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "cc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "pc",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			}
+		],
+		"name": "view_cc",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			}
+		],
+		"name": "view_pc",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_semno",
+				"type": "uint256"
+			}
+		],
+		"name": "view_sem",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_reg",
+				"type": "uint256"
+			}
+		],
+		"name": "view_tc",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+			contract = new web3.eth.Contract(abi, address);   //ABI , Address
+			/*
+			contract.methods.view_sem().call().then(function(hash)
+			{
+				$('#hashdisplay').html(hash);
+			})*/
+
+		})
+		/*
+			$('#save').click(function()
+			{
+				var reg=0;
+				reg=parseInt($('#registerno').val());
+				var nam = document.getElementById('name').value;
+				var dep = document.getElementById('dept').value;
+				var YearOA= document.getElementById('yoa').value;
+				web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+					var acc=accounts[0];
+					return contract.methods.insertStudent(reg,nam,dep,YearOA).send({from: acc});
+				}).then(function(tx){
+					console.log(tx);
+				}).catch(function(tx){
+					console.log(tx);
+				})
+			})*/
+		$('#btn-view-hash').click(function () {
+			var reg = 0;
+			reg = parseInt($('#registerno').val());
+			/*var sem = document.getElementById('Semselect').value;
+			var cc = document.getElementById('consolidated-cert').value;
+			var tc = document.getElementById('transfer-cert').value;
+			var pc = document.getElementById('Provisional-cert').value;
+			*/
+			//To check which radio button is selected & to perform actions based on it.
+			if (document.getElementById('consolidated-cert').checked == true) {
+				var cc = document.getElementById('consolidated-cert').value;
+				alert("Consolidated - certificate is selected");
+
+				contract.methods.view_cc(reg).call().then(function (hash) {
+					$('#hashdisplay').html(hash);
+				})
+
+			} else if (document.getElementById('transfer-cert').checked == true) {
+				var tc = document.getElementById('transfer-cert').value;
+				alert("Transfer - certificate is selected");
+
+				contract.methods.view_tc(reg).call().then(function (hash) {
+					$('#hashdisplay').html(hash);
+				})
+
+			} else if (document.getElementById('Provisional-cert').checked == true) {
+				var pc = document.getElementById('Provisional-cert').value;
+				alert("Provisional - certificate is selected");
+
+				contract.methods.view_pc(reg).call().then(function (hash) {
+					$('#hashdisplay').html(hash);
+				})
+			} else if (document.getElementById('Semester-cert').checked == true) {
+				var sem = document.getElementById('Semselect').value;
+				alert("Semester - certificate is selected");
+				contract.methods.view_sem(reg,sem).call().then(function (hash) {
+					$('#hashdisplay').html(hash);
+				})
+			}
+			/*
+			contract.methods.view_sem(reg,sem).call().then(function(hash)
+			{
+				$('#hashdisplay').html(hash);
+			})*/
+		})
+	</script>
+</body>
+
+</html>
