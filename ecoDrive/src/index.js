@@ -76,15 +76,39 @@ const buyInsurance = (ecocontract, accounts) => {
 }
 
 
-const getReward = (ecocontract) => {
+const getReward = (ecocontract, accounts) => {
   $("#getReward").on("click", async (e) => {
     e.preventDefault();
-    const rate = await ecocontract.methods.getReward(1, 40, 100).call().then(res => {
-      const xdc = web3.utils.fromWei(res, 'ether');
-      console.log(xdc);
-    });
+
+    await ecocontract.methods.getReward(1, 40, 100)
+      .send({
+        from: accounts[0],
+      })
+      .then(async () => {
+        console.log('get reward  testing');
+      });
+
   });
 }
+
+// // const connectWalletBtn = async () => {
+// $("#connectToWallet").on("click", async (e) => {
+//   e.preventDefault();
+
+//   const accounts = await window.web3.eth.getAccounts()
+//   if (accounts.length > 0) {
+//     console.log("accounts", accounts);
+//     $("#wallet-btn-nav").hide();
+//     $("#connectToWallet").hide();
+
+//     // $('#wallet').hide();
+
+//   } else {
+//     alert("Please login XDC pay")
+//   }
+
+// });
+// // }
 
 
 async function ecoFunctionApp() {
@@ -97,7 +121,7 @@ async function ecoFunctionApp() {
   console.log("ecocontract", ecocontract);
   addVehicle(ecocontract, accounts);
   buyInsurance(ecocontract, accounts);
-  getReward(ecocontract);
+  getReward(ecocontract, accounts);
 }
 
 ecoFunctionApp();
