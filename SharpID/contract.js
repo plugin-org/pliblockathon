@@ -217,33 +217,22 @@ const contractABI = [
   }
 ]
 
-const contractAddress = "0xCbd1759c4C810207b328eA33495284Ee3aF1aDf1"
+// const contractAddress = "0xCbd1759c4C810207b328eA33495284Ee3aF1aDf1"
+const contractAddress = "0x4419324ff6c7B6edCc0cAc9F4A768527b2203EBc"
 const RPCURL = "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
-var accounts,web3,contract;
+var accounts, web3, contract, w3;
 
-async function loadBlockchainData() {
-    const web3 = window.web3;
-    const accounts = await web3.eth.getAccounts();
-    console.log(accounts);
-    const account = accounts[0];
-    console.log(account);
-    const balance = await web3.eth.getBalance(account);
-    console.log(balance);
-    const balanceInEther = web3.utils.fromWei(balance, 'ether');
-    console.log(balanceInEther);
-  }
-
-const onLoad = async ()=> {
-  if(window.xdc){
+const onLoad = async () => {
+  if (window.xdc) {
     window.web3 = new Web3(window.xdc);
     window.xdc.enable();
     accounts = await web3.eth.getAccounts();
     w3 = new Web3(RPCURL);
     contract = new web3.eth.Contract(contractABI, contractAddress);
-    
-}else{
+
+  } else {
     alert("Please install XDC Pay extension!");
-}
+  }
 }
 
 onLoad();

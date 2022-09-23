@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharpid</title>
+    <title>Institute | Sharp ID</title>
+    <link rel="icon" href="./public/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./public/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href=",/public/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./public/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./public/favicon/site.webmanifest">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.0/web3.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <script src="/contract.js" ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="/contract.js"></script>
 </head>
+
 <body>
-    <div class="container align-items-center justify-content-center" style="padding: 20px;" >
+    <div class="container align-items-center justify-content-center" style="padding: 20px;">
         <h1>Verification History</h1>
         <hr width="100%" class="mt-5">
         <table class="table table-condensed" id="binding-table">
@@ -27,33 +40,34 @@
                     <th>Timestamp</th>
                     <th>Block</th>
                 </tr>
-        </thead>
-        <tbody id="table_body">
-        </tbody>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
     </div>
 </body>
 <script type="text/javascript">
- const init = async ()=> {
-        if(window.xdc){
+    const init = async () => {
+        if (window.xdc) {
             window.web3 = new Web3(window.xdc);
             window.xdc.enable();
             accounts = await web3.eth.getAccounts();
             w3 = new Web3(RPCURL);
             contract = new web3.eth.Contract(contractABI, contractAddress);
-            var response = await contract.methods.getVerifications().call({from:accounts[0]});
+            var response = await contract.methods.getVerifications().call({ from: accounts[0] });
             console.log(response);
             var tbody = $('#table_body');
             $.each(response, function (i, item) {
-            $('<tr>').append(
-            $('<td>').text(item.from),
-            $('<td>').text(item.to),
-            $('<td>').text(item.block),
-                $('<td>').text(item.time)).appendTo(tbody);
+                $('<tr>').append(
+                    $('<td>').text(item.from),
+                    $('<td>').text(item.to),
+                    $('<td>').text(item.block),
+                    $('<td>').text(item.time)).appendTo(tbody);
             });
-        }else{
+        } else {
             alert("Please install XDC Pay extension!");
         }
     }
     init();
 </script>
+
 </html>
