@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharpid</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.0/web3.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <script src="/contract.js" ></script>
+</head>
+<body>
+    <div class="container" style="padding: 100px;" >
+        <h1>Select your signin option</h1>
+        <input type="button" class="btn btn-primary m-1" id="std" value="Student">
+        <input type="button" class="btn btn-primary m-1" id="org" value="Organization">
+        <input type="button" class="btn btn-primary m-1" id="third" value="Third Pary Verification">
+    </div>
+</body>
+<script>
+    $("#std").click(function(){
+        if(window.xdc){
+            window.xdc.enable();
+            window.location.href = "/std.html";
+        }else{
+            alert("XDCPAY not Available!");
+        }
+    });
+    $("#org").click(function(){
+        if(window.xdc){
+            contract.methods.isfaculty().call({from:accounts[0]}).then((result)=>{
+                if(result) {
+                    window.xdc.enable();
+                    window.location.href = "/org.html";
+                }
+                else alert("Sorry you are not an Organization!");
+            })
+        }else{
+            alert("XDCPAY not Available!");
+        }
+    });
+    $("#third").click(function(){
+        if(window.xdc){
+            window.xdc.enable();
+            window.location.href = "/third.html";
+        }else{
+            alert("XDCPAY not Available!");
+        }
+    });
+
+    
+</script>
+</html>
