@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anonymous_web</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="#">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/c504d107a7.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.js"
+        integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+
+    <!-- Google CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Google API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi0cgOVZ-yUx-E50EdkJDb5-WmMHLjABo&v=3.exp&sensor=false&libraries=places"></script>
+
+</head>
+
+<!-- Body -->
+
+<body>
+
+    <section id="navbar">
+        <!-- Navbar Start -->
+        <nav class="navbar fixed-top navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" id="logo" href="#">Cyber Crime</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="index" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="start.html">Complain</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+    </section>
+
+
+
+    <span><br><br><br><br></span>
+
+
+
+    <section id="complain-box">
+        <p>RAISE A COMPLAINT</p>
+        <hr size="1" noshade>
+        <form class="complaint" action="">
+            <br>
+            <input id="complain-id" type="text" name="aadhar" placeholder="Aadhar Number" pattern="\d*" maxlength="12" autocomplete="off"><br>
+            
+            <select name="type" id="dropdown-id">
+                <option value="" hidden>--Category of Complain--</option>
+                <option value="1">Child Pornography (CP)-Child Sexual Abuse Material (CSAM)</option>
+                <option value="2">Rape/Gang Rape (RGR)-Sexually Abusive Content</option>
+                <option value="3">Publishing or Transmitting Sexually Obscene material in electronic form</option>
+                <option value="4">Publishing or transmitting of material containing sexually explicit act in electronic form</option>
+            </select><br>
+    
+            <input type="text" name="Country" id="country" placeholder="Country" required><br>
+            <input type="text" name="State" id="state" placeholder="State" required><br>
+            <input type="text" name="City" id="city" placeholder="City" required><br>
+            <input type="number" name="Zip" id="zip" placeholder="Zipcode" min="100000" max="999999" required><br>
+            <input type="date" name="date" id="date" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31"><br>
+
+            <textarea id="complain-desc" name="description" cols="30" rows="5" placeholder="Your Problem..?" oninput="auto_grow(this)"></textarea><br>
+            <script>
+                function auto_grow(element) {
+                    element.style.height = "5px";
+                    element.style.height = (element.scrollHeight) + "px";
+                }
+            </script>
+
+
+            <br><br><br>
+            <button type="submit" name="submit" id="complainBtn" value="Submit">Submit</button>
+        </form>
+            
+    </section>
+
+
+    <!-- Goto Top Btn Starts -->
+<button onclick="topFunction()" id="myTopBtn" title="Go to top"><i class="fa-solid fa-circle-up"></i></button>
+<script>
+  // Get the button
+  let mybutton = document.getElementById("myTopBtn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {
+    scrollFunction()
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+<!-- Goto Top Btn Ends -->
+
+
+<span><br><br><br><br></span>
+
+<footer>
+  @Copyright 2022 The Hack2know
+</footer>
+
+
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
+<script type = "text/javascript" src="src/utils.js"></script>
+<script type="text/javascript" src ="src/index.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 
+        Google API : AIzaSyBi0cgOVZ-yUx-E50EdkJDb5-WmMHLjABo
+     -->
