@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--<link rel="stylesheet" type="text/css" href="styles.css">-->
+    <title>Document</title>
+</head>
+<body>
+    <div>
+		<form class="box">
+			<p id = "balance"></p>
+			<input type="text" id="amount">
+			<button id="deposit">Deposit</button>
+
+			<p id = "Register"></p>
+            <br>
+			<label for="RegisterNumber">Register Number</label>
+			<input type="text" id="registerno" name="" value="" placeholder="Enter register number">
+			<button id="Save">Save</button>
+			<br>
+			<label for="Name">Name</label>
+			<input type="text" id="name" name="" value="" placeholder="Enter your name">
+			<br>
+			<label for="Semester">Semester</label>
+			<select>
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+			</select>
+			<br>
+			<label for="Browse">Browse</label>
+			<input type="file">
+			<br>
+			<button id="Upload">Upload</button>
+			
+		</form>
+    </div>
+    <!--<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>-->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8080"));
+        }
+    </script>
+    <script>
+        var contract;
+        $(document).ready(function() //whenever page is ready create & initialize object of web3
+        {
+            
+            var address = "0xbDC01ED25C13C1A76228CA752C08E4e19c70b6F2";
+            var abi =[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "bal",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "amt",
+				"type": "int256"
+			}
+		],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getRegister",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_stuName",
+				"type": "string"
+			}
+		],
+		"name": "name",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_sturegno",
+				"type": "uint256"
+			}
+		],
+		"name": "regno",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "stuName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "sturegno",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+            contract = new web3.eth.Contract(abi, address);   //ABI , Address
+
+            contract.methods.getBalance().call().then(function(bal)
+            {
+                $('#balance').html(bal);
+            })
+			contract.methods.getRegister().call().then(function(sturegno)
+            {
+                $('#Register').html(sturegno);
+            })
+        }) 
+		$('#deposit').click(function()
+        {
+            var amt=0;
+            amt=parseInt($('#amount').val());
+            web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+                var acc=accounts[0];
+                return contract.methods.deposit(amt).send({from: acc});
+            }).then(function(tx){
+                console.log(tx);
+            }).catch(function(tx){
+                console.log(tx);
+            })
+        })  		
+		$('#Save').click(function()
+        {
+            var reg=0;
+            reg=parseInt($('#registerno').val());
+            web3.eth.getAccounts().then(function(accounts){ //requestAccounts
+                var acc=accounts[0];
+                return contract.methods.regno(reg).send({from: acc});
+            }).then(function(tx){
+                console.log(tx);
+            }).catch(function(tx){
+                console.log(tx);
+            })
+        })
+    </script>
+</body>
+</html>

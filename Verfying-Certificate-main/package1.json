@@ -1,0 +1,18 @@
+{
+  "name": "testing-eth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ipfs-http-client": "^57.0.3"
+  },
+  "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.18.9"
+  }
+}
