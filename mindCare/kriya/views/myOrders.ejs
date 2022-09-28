@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MINDCARE</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../kriya/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../kriya/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+function validate()
+{
+	var Frm = document.SKForm;
+}
+
+function preparePHROrder()
+{
+	var Frm = document.SKForm;
+	
+	if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0)
+	{
+		swal("Please select records which you want to buy");
+		return false;
+	}
+	else
+	{
+		Frm.action = "/kriya/preparePHROrder";
+		Frm.submit();
+	}
+}
+
+function BodyOnLoad()
+{
+
+}
+
+function MoreDetails(OrderDetailsDiv, OrderHash)
+{
+	var Frm = document.SKForm;
+	document.getElementById("MoreDetailsDiv").innerHTML = eval("document.getElementById('"+OrderDetailsDiv+"').innerHTML");
+	document.getElementById("HashDiv").innerHTML = OrderHash;
+	$('#MoreDetailsModal').modal('show');
+}
+
+
+function DownloadPHRData(OrderID)
+{
+	document.getElementById('DownloadViewModal').innerHTML="<iframe id='iframe_Download' src='' frameborder='0' height='200px' width='100%'></iframe>"
+	document.getElementById('iframe_Download').src="./DownloadPHRData?OrderID="+OrderID;
+	//$('#DownloadModal').modal('show');
+}
+
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		<i class="bi bi-box"></i>
+        <span>MINDCARE</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/kriya/searchPHR">
+
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-10 col-md-10">
+
+					<table class="table table-bordered table-sm">
+						<tr>
+							<td width="5%" class="table01_td_header">SlNo.</td>
+							<td width="45%" class="table01_td_header">OrderID</td>
+							<td width="35%" class="table01_td_header">Order Details</td>
+							<td width="15%" class="table01_td_header">&nbsp;</td>
+						</tr>
+			<% 
+				var SlNo=0;
+				data.OrderList.forEach(function(Order){ 
+					SlNo=SlNo+1;
+			%>		  
+						<tr>
+							<td align='center'><%=SlNo%></td>
+							<td align='center'>
+								<div class="OrderDetailsDiv" id="hdnOrderDetails_<%=SlNo%>"><%-JSON.stringify(Order.OrderJSON)%></div>
+								<a href="javascript:MoreDetails('hdnOrderDetails_<%=SlNo%>','<%=Order.OrderHash%>')"><%=Order._id%></a>
+							</td>
+							<td>
+								<%=Order.OrderDescription%>
+							</td>
+							<td align='center'>
+								<%
+								if(Order.OrderType == "PHR") {
+								%>
+								<a class="btn btn-primary btn-sm" href="javascript:DownloadPHRData('<%=Order._id%>')" role="button">Download</a>
+								<%
+								}
+								else{
+								%>
+								<a class="btn btn-primary btn-sm" href="#" role="button">Go To Service</a>
+								<%
+								}
+								%>
+							</td>
+						</tr>
+			<% }); %>
+					</table>
+
+					<div class="text-center top-margin-30">
+						<a class="btn btn-primary" href="./menu" role="button">Home</a>
+					</div>
+					
+				</div>
+			</div>
+
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+<!-- Modal More Details Starts here -->
+
+<div class="modal fade" id="MoreDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="row justify-content-center">
+		<div class="col-lg-6 col-md-6 text-center">
+
+		  <div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			  <div class="modal-body">
+					<div class="MoreDetailsDiv" id="MoreDetailsDiv"></div>
+					<div class="HashDiv" id="HashDiv"></div>
+			  </div>
+			  <div class="modal-footer model-add-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		  
+		</div>
+	</div>
+</div>
+
+<!-- Modal More Details Ends here -->
+
+<!-- Modal Downlaod Starts here -->
+
+<div class="modal fade" id="DownloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="row justify-content-center">
+		<div class="col-lg-6 col-md-6 text-center">
+
+		  <div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+			  <div class="modal-body" id="DownloadViewModal">
+					
+			  </div>
+			  <div class="modal-footer model-add-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		  
+		</div>
+	</div>
+</div>
+
+<!-- Modal Downlaod Ends here -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MINDCARE</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../kriya/public/assets/vendor/popper/popper.min.js"></script>
+  <script src="../kriya/public/assets/vendor/aos/aos.js"></script>
+  <script src="../kriya/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../kriya/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../kriya/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../kriya/public/assets/js/main.js"></script>
+  <script src="../kriya/public/assets/vendor/jquery/jquery-3.3.1.slim.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+    "name": "Ncu Pizza",
+    "description": "Pizza NFT for NcuCoin Canteen!",
+    "artifactUri": "ipfs://QmQx6buxvsxvUrrtDPsgWWC9GcvFo9oHWumoo8cgc4m3zh",
+    "displayUri": "ipfs://QmQx6buxvsxvUrrtDPsgWWC9GcvFo9oHWumoo8cgc4m3zh",
+    "thumbnailUri": "ipfs://QmQx6buxvsxvUrrtDPsgWWC9GcvFo9oHWumoo8cgc4m3zh",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Food",
+        "value": "Pizza"
+      },
+      {
+        "name": "Price",
+        "value": "100 NCU Coin"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "NcuPIZZ",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": false
+  }

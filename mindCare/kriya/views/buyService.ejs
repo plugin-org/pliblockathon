@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MINDCARE</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../kriya/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../kriya/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+function validate()
+{
+	var Frm = document.SKForm;
+	
+}
+
+async function BodyOnLoad()
+{
+	if(window.ethereum != null) {
+		//const web3 = new Web3(window.ethereum);
+		window.web3 = new Web3(window.ethereum);
+		try {
+			await window.ethereum.enable();
+		} catch (error) {
+			alert("Web wallet not enabled.")
+		}
+	}
+	else
+	{
+		alert("No Metamask");
+	}
+}
+
+async function BuyNow()
+{
+
+	var data = <%-JSON.stringify(data)%>;
+	var OrderID = data.OrderJSON.OrderID;
+	var OrderHash = await window.web3.utils.soliditySha3(data.OrderJSON);
+	var Seller="xdcf5bcd7deded72612fa8844664c715623b598af4c";
+	var OrderDate = Math.floor(new Date().getTime() / 1000);
+	var ExpiryDate = Math.floor(new Date().getTime() / 1000);
+	var TotalToken = data.TotalToken;
+
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc9ad2a65746c265bcD57238e5a2326e415a47f140");
+	const accounts = await window.web3.eth.getAccounts();
+
+	await MyContract.methods.placeOrder(OrderID, OrderHash, TotalToken, Seller, OrderDate, ExpiryDate).send({from:accounts[0]}, function(error, result) {
+		if(!error)
+		{
+			var Frm = document.SKForm;
+			Frm.hdnHash.value=result;
+			Frm.hdnOrderHash.value=OrderHash;
+			Frm.submit();
+		}
+		else
+		{
+			alert(error);
+		}
+	});
+
+}
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		<i class="bi bi-box"></i>
+        <span>MINDCARE</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/kriya/OrderConfirm" onsubmit="return validate()">
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-5 col-md-5">
+					<div class="card card01 margin-top-20">
+						<div class="card-header">
+							Purchase Confirmation
+						</div>
+						<div class="card-body">
+							<div class="title01">
+								You are about to Buy <%=data.OrderJSON.OrderDescription%> service by paying <%=data.TotalToken%> Mindcare Token.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center top-margin-30">
+				<input type="hidden" name="hdnHash" id="hdnHash" value="">
+				<input type="hidden" name="hdnOrderHash" id="hdnOrderHash" value="">
+				<input type="hidden" name="hdnOrderID" id="hdnOrderID" value="<%=data.OrderJSON.OrderID%>">
+				<button type="button" class="btn btn-primary" onclick="BuyNow()">Buy Now</button>
+			</div>
+
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MINDCARE</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../kriya/public/assets/abi/kriyatokenABI.json"></script>
+  <script src="../kriya/public/assets/js/web3.min.js"></script>
+  <script src="../kriya/public/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../kriya/public/assets/vendor/aos/aos.js"></script>
+  <script src="../kriya/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../kriya/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../kriya/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../kriya/public/assets/js/main.js"></script>
+
+</body>
+
+</html>

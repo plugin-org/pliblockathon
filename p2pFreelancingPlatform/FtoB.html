@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ERC1155</title>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script>
+
+var ABI = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "freelancer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "skills",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "bio",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "details",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "skills",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "bio",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "addToDatabase",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+async function BodyOnLoad()
+{
+    if(window.ethereum != null) {
+        //const web3 = new Web3(window.ethereum);
+        window.web3 = new Web3(window.ethereum);
+        try {
+            await window.ethereum.enable();
+        } catch (error) {
+            alert("Web wallet not enabled.")
+        }
+    }
+}
+
+async function getWeb3(){
+	console.log("web3called")
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+    } else if (window.web3) {
+      window.web3 = new Web3(
+        // new Web3.providers.HttpProvider("https://erpc.apothem.network/")
+    );
+    } else {
+      window.alert(
+        "Non-Xinfin browser detected. You should consider trying XDCpay"
+      );
+    }
+}
+getWeb3()
+
+async function addToDatabase()
+{
+    const b = window.web3;
+    console.log("b value is",b)
+    const MyContract =  await new b.eth.Contract(ABI, "xdcb76211f824Fa6C7b9320DB88FD97b534af51ea7b");
+    console.log("MyContract",MyContract);
+    const accounts = await b.eth.getAccounts();
+    console.log("accounts are",accounts)
+	//return null;
+    const amountToSend = b.utils.toWei("0.5", "ether");
+    await MyContract.methods.addToDatabase("","","","","").send({from:accounts[0]}, function(error, result) {
+        if(!error)
+        {
+        console.log(result);
+        }
+        else
+        {
+        console.log(error)
+        }
+    });
+}
+
+
+</script>
+</head>
+<body>
+<div>
+<p>Login Form - <span id="wallet-address"></span></p>
+<label>skill</label><input type="string" name="tokenId">
+<br>
+<label>Bio</label><input type="string" name="Amount">
+<br>
+<label>Name</label><input type="string" name="Amount">
+<br>
+<button id= "mint" onclick="addToDatabase()">Mint an NFT</button>
+</div>
+</body>
+</html>

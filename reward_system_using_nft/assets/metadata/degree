@@ -1,0 +1,30 @@
+{
+    "name": "The NorthCap University Degree",
+    "description": "A digital degree for NCU Graduates ",
+    "artifactUri": "ipfs://QmUDnTrbPT2Wf1h3ynFochYKUFrSHF3fi43NQtyokovrDM",
+    "displayUri": "ipfs://QmUDnTrbPT2Wf1h3ynFochYKUFrSHF3fi43NQtyokovrDM",
+    "thumbnailUri": "ipfs://QmUDnTrbPT2Wf1h3ynFochYKUFrSHF3fi43NQtyokovrDM",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Student Name",
+        "value": "Praveen"
+      },
+      {
+        "name": "Course",
+        "value": "B.TECH CSE"
+      }
+      ,
+      {
+        "name": "CGPA",
+        "value": "9.8"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "DEG",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": true
+  }

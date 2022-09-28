@@ -1,0 +1,207 @@
+ABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "SenderId",
+				"type": "address"
+			}
+		],
+		"name": "Check",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "SenderId",
+				"type": "address"
+			}
+		],
+		"name": "CheckXX",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "DocFlowId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "ProcessId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Details",
+				"type": "string"
+			}
+		],
+		"name": "CreateDocFlow",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "DocFlowId",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "SenderId",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "ReceiverId",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "DocHash",
+				"type": "string"
+			}
+		],
+		"name": "CreateDocFlowStep",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "DocFlowId",
+				"type": "string"
+			}
+		],
+		"name": "GetDocFlow",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "ProcessId",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Details",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "DateTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "ReceiverId",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "SenderId",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "ReceiverId",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "DocHash",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "DateTime",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Docflow.DocFlowStep[]",
+						"name": "DocFlowSteps",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct Docflow.DocFlowHeader",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "ReceiverId",
+				"type": "address"
+			}
+		],
+		"name": "GetReceiverDoc",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "DocFlowId",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "ActionReq",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "DateTime",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Docflow.ReceiverDoc[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

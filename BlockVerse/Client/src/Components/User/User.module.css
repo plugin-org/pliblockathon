@@ -1,0 +1,72 @@
+.user_profile {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 50px;
+  /* padding-right: 70px; */
+}
+.nav_links_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 30px;
+}
+.nav_links {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.link_container {
+  margin: 20px 30px;
+  list-style-type: none;
+  cursor: pointer;
+}
+.link {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.link:hover {
+  color: #e4abff;
+}
+.user_sections {
+  display: flex;
+  align-self: center;
+  margin-bottom: 170px;
+}
+.icon {
+  width: 30px;
+  margin-left: 8px;
+}
+@media screen and (max-width: 1200px) {
+  .side_nav {
+    display: none;
+  }
+  .icon {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 600px) {
+  .link_container {
+    margin: 20px 10px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .link_container {
+    margin: 20px 0;
+  }
+  .nav_links_container {
+    padding-left: 25px;
+  }
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MINDCARE</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../kriya/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../kriya/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+function validate()
+{
+	var Frm = document.SKForm;
+	
+}
+
+function prepareOrder(OrderDescription)
+{
+	var Frm = document.SKForm;
+	Frm.submit();
+}
+
+async function BodyOnLoad()
+{
+
+}
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		<i class="bi bi-box"></i>
+        <span>MINDCARE</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/kriya/buyService" onsubmit="return validate()">
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-10 col-md-10">
+					<div class="card card01">
+						<div class="card-header">
+							Mental Health Counselling Services
+						</div>
+						<div class="card-body">
+
+							<div class="row justify-content-center mt-3">
+								<div class="col-lg-10 col-md-10">
+									<table class="table table-bordered table-sm table02">
+										<tr>
+											<td colspan=2 class="table02_td_header">Dr. James Counselling</td>
+										</tr>
+										<tr>
+											<td width="30%" class="table02_td_bodyl">About Counselor</td>
+											<td width="70%" class="table02_td_bodyr">Dr. Jemes, a gold medallist in psychology, has been practicing professionally for 5 years now. He believes in being compassionate, understanding, & maintaining a friendly demeanour with his clients in any situation.</td>
+										</tr>
+										<tr>
+											<td width="30%" class="table02_td_bodyl">Qualification</td>
+											<td width="70%" class="table02_td_bodyr">Msc In Health Psychology</td>
+										</tr>
+										<tr>
+											<td width="30%" class="table02_td_bodyl">Languages Spoken</td>
+											<td width="70%" class="table02_td_bodyr">English, Hindi, Tamil</td>
+										</tr>
+										<tr>
+											<td width="30%" class="table02_td_bodyl">Specialization</td>
+											<td width="70%" class="table02_td_bodyr">Anxiety, Stress, Depression, Relationship Issues, Grief, Trauma, Couple Counseling, Suicidal Ideation, Sleep Issues, Narcissistic Abuse, Self-Harm</td>
+										</tr>
+										<tr>
+											<td width="30%" class="table02_td_bodyl">Fees Per Session</td>
+											<td width="70%" class="table02_td_bodyr">10 Mindcare Tokens</td>
+										</tr>
+										<tr>
+											<td colspan=2>Reviews / Available Time slot / Schedule</td>
+										</tr>
+									</table>
+									
+									<div class="text-center">
+										<input type="hidden" name="hdnOrderDescription" id="hdnOrderDescription" value="Dr. James Counselling">
+										<input type="hidden" name="hdnTotalToken" id="hdnTotalToken" value="10">
+										<button type="button" class="btn btn-primary" onclick="prepareOrder()">Buy Service</button>
+									</div>
+									
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center top-margin-30">
+				<a class="btn btn-primary" href="./menu" role="button">Home</a>
+			</div>
+
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MINDCARE</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../kriya/public/assets/abi/kriyaordersABI.json"></script>
+  <script src="../kriya/public/assets/js/web3.min.js"></script>
+  <script src="../kriya/public/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../kriya/public/assets/vendor/aos/aos.js"></script>
+  <script src="../kriya/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../kriya/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../kriya/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../kriya/public/assets/js/main.js"></script>
+
+</body>
+
+</html>

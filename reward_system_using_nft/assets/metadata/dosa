@@ -1,0 +1,25 @@
+{
+    "name": "Ncu Dosa",
+    "description": "Dosa NFT for NcuCoin Canteen!",
+    "artifactUri": "ipfs://QmcSnPL2HkqeoNdYHzjC6taB7oBwEfyUQUxvNNbJfJvcMa",
+    "displayUri": "ipfs://QmcSnPL2HkqeoNdYHzjC6taB7oBwEfyUQUxvNNbJfJvcMa",
+    "thumbnailUri": "ipfs://QmcSnPL2HkqeoNdYHzjC6taB7oBwEfyUQUxvNNbJfJvcMa",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Food",
+        "value": "Dosa"
+      },
+      {
+        "name": "Price",
+        "value": "70 NCU Coin"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "NcuDOSA",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": false
+  }

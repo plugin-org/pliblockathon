@@ -1,0 +1,25 @@
+{
+    "name": "Ncu Samosa",
+    "description": "Samosa NFT for NcuCoin Canteen!",
+    "artifactUri": "ipfs://QmVcPbPSh6UA6dVLCiyWbhoyQCzLKDwLd9573sT9KWhTDP",
+    "displayUri": "ipfs://QmVcPbPSh6UA6dVLCiyWbhoyQCzLKDwLd9573sT9KWhTDP",
+    "thumbnailUri": "ipfs://QmVcPbPSh6UA6dVLCiyWbhoyQCzLKDwLd9573sT9KWhTDP",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Food",
+        "value": "Samosa"
+      },
+      {
+        "name": "Price",
+        "value": "40 NCU Coin"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "NcuSAMO",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": false
+  }

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fLogin</title>
+    <link rel="stylesheet" href="login.css">
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a href='index.html'><strong>HOME</strong></a>
+            </div>
+            
+        </div>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button type='button'onclick='login()'class='toggle-btn'><strong>SIGN UP</strong></button>
+                    <button type='button'onclick='register()'class='toggle-btn'><strong>LOGIN</strong></button>
+                </div>
+                <form id='login' class='input-group-login'>
+                    <input type='text'class='input-field'placeholder='Name' required >
+                    <input type='text'class='input-field'placeholder='Skills' required >
+                    <input type='text'class='input-field'placeholder='Work History' required >
+                    <input type='file'class='input-field'placeholder='Portfolio' required ><p>Upload Resume</p>
+                    <input type='text'class='input-field'placeholder='Jobs Looking for' required >
+                
+		   
+		    <input type='checkbox'class='check-box'><span>Remember Me</span>
+		    <button type='submit'onclick="addToDatabase()"class='submit-btn'><strong>SIGN UP</strong></button>
+		        </form>
+                <form id='register' class='input-group-register'>
+                <input type='text'class='input-field'placeholder='Contract Address' required >
+                
+
+            <input type='checkbox'class='check-box'><span>Remember Me</span>
+            <a href="Profile.html" target="blank" type="button" class="cta"><strong>LOG IN</strong></a>
+            
+                </form>
+ 
+		 
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script>
+
+var ABI = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "freelancer",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "skills",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "bio",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "details",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "skills",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "bio",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "addToDatabase",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getDetails",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+async function BodyOnLoad()
+{
+    if(window.ethereum != null) {
+        //const web3 = new Web3(window.ethereum);
+        window.web3 = new Web3(window.ethereum);
+        try {
+            await window.ethereum.enable();
+        } catch (error) {
+            alert("Web wallet not enabled.")
+        }
+    }
+}
+
+async function getWeb3(){
+	console.log("web3called")
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+    } else if (window.web3) {
+      window.web3 = new Web3(
+        // new Web3.providers.HttpProvider("https://erpc.apothem.network/")
+    );
+    } else {
+      window.alert(
+        "Non-Xinfin browser detected. You should consider trying XDCpay"
+      );
+    }
+}
+getWeb3()
+
+async function addToDatabase()
+{
+    const b = window.web3;
+    console.log("b value is",b)
+    const MyContract =  await new b.eth.Contract(ABI, "xdcb76211f824Fa6C7b9320DB88FD97b534af51ea7b");
+    console.log("MyContract",MyContract);
+    const accounts = await b.eth.getAccounts();
+    console.log("accounts are",accounts)
+	//return null;
+    const amountToSend = b.utils.toWei("0.5", "ether");
+    await MyContract.methods.addToDatabase("","","").send({from:accounts[0]}, function(error, result) {
+        if(!error)
+        {
+        console.log(result);
+        }
+        else
+        {
+        console.log(error)
+        }
+    });
+}
+
+
+</script>
+    <script>
+        
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+		function register()
+		{
+			x.style.left='-400px';
+			y.style.left='50px';
+			z.style.left='110px';
+		}
+		function login()
+		{
+			x.style.left='50px';
+			y.style.left='450px';
+			z.style.left='0px';
+		}
+	</script>
+	<script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+    "name": "Binance Ideathon Certificate",
+    "description": "A digital certificate for Binance Ideathon ",
+    "artifactUri": "ipfs://QmYqP7BnS2cPjkzk1QnovUvFw8oW2ZMiGf9X1XjvgNemr8",
+    "displayUri": "ipfs://QmYqP7BnS2cPjkzk1QnovUvFw8oW2ZMiGf9X1XjvgNemr8",
+    "thumbnailUri": "ipfs://QmYqP7BnS2cPjkzk1QnovUvFw8oW2ZMiGf9X1XjvgNemr8",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Student Name",
+        "value": "Merwin"
+      },
+      {
+        "name": "Position",
+        "value": "Second Place"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "CERT",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": true
+  }

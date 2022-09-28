@@ -1,0 +1,25 @@
+{
+    "name": "Ncu Burger",
+    "description": "Burger NFT for NcuCoin Canteen!",
+    "artifactUri": "ipfs://QmdyMjYsKS7EwTcxJe8h5HD9Diq7k4hZYdjuWwUyZwikHw",
+    "displayUri": "ipfs://QmdyMjYsKS7EwTcxJe8h5HD9Diq7k4hZYdjuWwUyZwikHw",
+    "thumbnailUri": "ipfs://QmdyMjYsKS7EwTcxJe8h5HD9Diq7k4hZYdjuWwUyZwikHw",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Food",
+        "value": "Burger"
+      },
+      {
+        "name": "Price",
+        "value": "50 NCU Coin"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "NcuBURG",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": false
+  }
