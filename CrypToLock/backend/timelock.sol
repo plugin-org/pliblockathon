@@ -31,6 +31,7 @@ contract cryptolock{
 
 
     function getlockdata(uint _lockdata) public {
+        require(balance[msg.sender]>0);
         LOCKFUND[msg.sender] = _lockdata;
     }
 
@@ -38,17 +39,31 @@ contract cryptolock{
     function recptaddress (address recpaddress) public{
         reciptantaddress = recpaddress;
     }
+
+    function lock() public view {
+        require(LOCKFUND[msg.sender] >0,"Enter fund to be locked");
+        require(block.timestamp > 0);
+
+        revert("he funds are successfully locked");
+    }
+
     function afterlocktime() public  {
         require(balance[msg.sender] > 0, "No Funds Availabe");
         require(block.timestamp > LOCKTIME[msg.sender], "Dude!!! The time hasn't expired yet"); 
         require(msg.sender == owner, "You are not the owner of the contract!! dude "); 
 
-        uint256 amount = balance[msg.sender]; 
+        if(reciptantaddress == owner){
+            uint256 amount = balance[msg.sender]; 
 
-        balance[msg.sender] = 0;
+        //balance[msg.sender] = 0;
 
-        (bool sent,) = msg.sender.call{value: amount}(""); 
-        require(sent, "Failed To Send Ether");
+            (bool sent,) = msg.sender.call{value: amount}(""); 
+            require(sent, "Failed To Send Ether");
+        }
+        else{
+            revert("Tokens sent successfully");
+        }
+        
         
      }
 
