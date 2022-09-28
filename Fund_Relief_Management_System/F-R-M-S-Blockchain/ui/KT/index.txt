@@ -1,0 +1,16 @@
+1) signup
+2) login
+3) homepage
+4) donate page (where XDC connection take place)
+5) voting and details page.
+
+uvicorn main:app --reload
+
+team name, members
+ps in a para
+soln
+unique selling points
+demo
+architecture
+flow
+thank you

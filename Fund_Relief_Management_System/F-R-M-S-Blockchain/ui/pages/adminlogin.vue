@@ -1,7 +1,12 @@
-<template>
+<template >
     <v-container class="form">
         <v-form>
             <v-col>
+                <v-row >
+                    <v-text class="lol">Admin Login</v-text>
+                </v-row>
+              
+              
                 <v-row>
                     <v-text-field placeholder="username" v-model="username"></v-text-field>
                 </v-row>
@@ -40,5 +45,16 @@
     .form{
         width:500px;
         margin:10% auto;
+        border:1px solid grey;
+        box-shadow: 3px 3px grey;
+        
     }
+    
+
+    .lol{
+    font-size:20px;
+    font-weight:400;
+    }
+ 
+   
 </style>

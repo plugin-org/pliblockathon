@@ -2,14 +2,32 @@
     <v-app>
         <v-container class="form">
             <v-form>
+            <v-row>
+                <v-col></v-col>
                 <v-col>
-                    <v-row>
-                        <v-btn text @click="user()" >User Login</v-btn>
+                    <v-row class="space">
+                    
+                        <v-text class="text">
+                            Fund Relif Managment System
+                        </v-text>
                     </v-row>
+
                     <v-row>
-                        <v-btn text @click="admin()"> Admin Login</v-btn>
+                    <v-col></v-col>
+                        <v-btn text @click="user()" class= "box">User Login</v-btn>
+                    <v-col></v-col>
                     </v-row>
+
+                    
+                    <v-row>
+                     <v-col></v-col>
+                        <v-btn text @click="admin()"class= "box"> Admin Login</v-btn>
+                     <v-col></v-col>
+                    </v-row>
+                              
                 </v-col>
+                <v-col></v-col>
+            </v-row>
             </v-form>
         </v-container>
 
@@ -45,3 +63,26 @@
         }
     }
 </script>
+
+
+<style>
+.space{
+margin-top:10em;
+
+}
+
+.box{
+border:1px solid white;
+width: 50%;
+margin-top:2em;
+margin-right:30px;
+
+
+}
+
+.text{
+font-size:25px;
+text-shadow: 1px 2px white;
+
+}
+</style>
