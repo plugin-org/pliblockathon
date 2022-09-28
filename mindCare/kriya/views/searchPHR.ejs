@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MINDCARE</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../kriya/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../kriya/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+function validate()
+{
+	var Frm = document.SKForm;
+}
+
+function preparePHROrder()
+{
+	var Frm = document.SKForm;
+	
+	if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0)
+	{
+		swal("Please select records which you want to buy");
+		return false;
+	}
+	else
+	{
+		Frm.action = "/kriya/preparePHROrder";
+		Frm.submit();
+	}
+}
+
+function BodyOnLoad()
+{
+
+}
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		<i class="bi bi-box"></i>
+        <span>MINDCARE</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/kriya/searchPHR">
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-5 col-md-5">
+					<div class="card card01 margin-top-20">
+						<div class="card-header">
+							Search & Buy PHR Data
+						</div>
+						<div class="card-body">
+
+							<div class="row">
+								<div class="col-12">
+									<label for="txtPatientName" class="form-label">Patient Name</label>
+								</div>
+								<div class="col-12">
+									<input type="text" class="form-control" id="txtPatientName" name="txtPatientName" value="<%=data.PatientName%>">
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center margin-top-20">
+				<button type="submit" class="btn btn-primary">Search</button>
+			</div>
+
+		<%
+		if(data.FormPost){
+		%>
+
+		<div class="row justify-content-center mt-3">
+			<div class="col-lg-8 col-md-8">
+
+				<table class="table table-bordered table-sm">
+					<tr>
+						<td width="15%" class="table01_td_header">SlNo.</td>
+						<td width="20%" class="table01_td_header">Select</td>
+						<td width="65%" class="table01_td_header">Patient Name</td>
+					</tr>
+		<% 
+			var SlNo=0;
+			var PatientName="";
+			var FHIRID="";
+			var WalletID="";
+
+			data.FHIRData.forEach(function(resource){ 
+			SlNo=SlNo+1;
+			PatientName = resource.resource.name[0].given.join(" ");
+			FHIRID = resource.resource.id;
+			WalletID = resource.resource.extension[0].valueString;
+		%>		  
+					<tr>
+						<td align='center'><%=SlNo%></td>
+						<td align='center'>
+							<input class="form-check-input" type="checkbox" value="<%=FHIRID%>|<%=WalletID%>" name="checkToBuy" id="checkToBuy">
+						</td>
+						<td><%=PatientName%></td>
+					</tr>
+		<% }); %>
+				</table>
+				
+				<%
+					if(SlNo > 0)
+					{
+				%>
+					<div class="text-center">
+						<button type="button" class="btn btn-primary" onclick="preparePHROrder()">Buy PHR Data</button>
+					</div>
+				<%
+					}
+				%>
+				
+			</div>
+		</div>
+
+		<%
+		}
+		%>
+		
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MINDCARE</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../kriya/public/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../kriya/public/assets/vendor/aos/aos.js"></script>
+  <script src="../kriya/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../kriya/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../kriya/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../kriya/public/assets/js/main.js"></script>
+
+</body>
+
+</html>

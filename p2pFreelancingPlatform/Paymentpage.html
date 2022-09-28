@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Portal</title>
+    <link rel="stylesheet" href="paymentpage.css">
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a href='index.html'><strong>HOME</strong></a>
+            </div>
+            
+        </div>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button type='button'onclick='login()'class='toggle-btn'><strong>XDC</strong></button>
+                    <button type='button'onclick='register()'class='toggle-btn'><strong>PAY</strong></button>
+                </div>
+                <form id='login' class='input-group-login'>
+                    
+                    <input type='text'class='input-field'placeholder='Amount' required >
+                     
+                
+		   
+		    <input type='checkbox'class='check-box'><span>Kindly make sure your wallet is connected to the site</span>
+		    <button type='submit'onclick="getAmount()"class='submit-btn'><strong>One Click Pay</strong></button>
+		        </form>
+                
+ 
+		 
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script>
+
+var ABI = [
+
+{
+		"constant": true,
+		"inputs": [],
+		"name": "amt",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amt",
+				"type": "uint256"
+			}
+		],
+		"name": "getAmount",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	}
+]
+
+
+async function getWeb3(){
+	console.log("web3called")
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+    } else if (window.web3) {
+      window.web3 = new Web3(
+        // new Web3.providers.HttpProvider("https://erpc.apothem.network/")
+    );
+    } else {
+      window.alert(
+        "Non-Xinfin browser detected. You should consider trying XDCpay"
+      );
+    }
+}
+getWeb3()
+
+async function addToDatabase()
+{
+    const b = window.web3;
+    console.log("b value is",b)
+    const MyContract =  await new b.eth.Contract(ABI, "0xaD39c4a042aa22612849099805941cb594d90d025");
+    console.log("MyContract",MyContract);
+    const accounts = await b.eth.getAccounts();
+    console.log("accounts are",accounts)
+	//return null;
+    const amountToSend = b.utils.toWei("0.5", "ether");
+    await MyContract.methods.getAmount("").send({from:accounts[0]}, function(error, result) {
+        if(!error)
+        {
+        console.log(result);
+        }
+        else
+        {
+        console.log(error)
+        }
+    });
+}
+
+
+</script>
+    <script>
+        
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+		function register()
+		{
+			x.style.left='-400px';
+			y.style.left='50px';
+			z.style.left='110px';
+		}
+		function login()
+		{
+			x.style.left='50px';
+			y.style.left='450px';
+			z.style.left='0px';
+		}
+	</script>
+	<script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

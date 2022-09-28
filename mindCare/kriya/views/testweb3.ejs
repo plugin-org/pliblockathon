@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<script>
+
+async function BodyOnLoad()
+{
+	if(window.ethereum != null) {
+		//const web3 = new Web3(window.ethereum);
+		window.web3 = new Web3(window.ethereum);
+		try {
+			await window.ethereum.enable();
+		} catch (error) {
+			alert("Web wallet not enabled.")
+		}
+	}
+}
+
+async function BuyToken()
+{
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc818f97aeabeC1418073158d26E0bA5A4c3FA9ff8");
+	const accounts = await window.web3.eth.getAccounts();
+	const amountToSend = window.web3.utils.toWei("0.5", "ether");
+	await MyContract.methods.buyTokens('xdc9317b8cf2b859a04deee7365c88ef020c2fe4264').send({from:accounts[0], value:amountToSend}, function(error, result) {
+		if(!error)
+		{
+			console.log(result);
+		}
+		else
+		{
+			console.log(error)
+		}
+	});
+
+}
+
+
+async function CallMethod01()
+{
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc82B68fD05a0eAAD442821cEf4d1F0793f561ba46", {handleRevert:true});
+	console.log(MyContract);
+	const accounts = await window.web3.eth.getAccounts();
+
+	try {
+		var response = await MyContract.methods.GetReceiverDoc("0x5adcadd5dd22611a82114cacdcefaf209861ab8c").call();
+		console.log(response)
+	} catch (e) {
+		console.log(e)
+	}
+
+}
+
+
+async function CallMethod()
+{
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc82B68fD05a0eAAD442821cEf4d1F0793f561ba46", {handleRevert:true});
+	console.log(MyContract);
+	const accounts = await window.web3.eth.getAccounts();
+
+	try {
+		var response = await MyContract.methods.CreateDocFlowStep("test10","0x3dbff13b70d221ab7cd3595354856e2e0214150f","0x9317b8cf2b859a04deee7365c88ef020c2fe4264","CBCBCB").call();
+		console.log(response)
+	} catch (e) {
+		console.log(e)
+	}
+
+}
+
+
+async function CallMethodTest()
+{
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc82B68fD05a0eAAD442821cEf4d1F0793f561ba46", {handleRevert:true});
+	window.web3.eth.handleRevert = true;
+	console.log(MyContract);
+	const accounts = await window.web3.eth.getAccounts();
+	MyContract.methods.CreateDocFlowStep("test10","0x3dbff13b70d221ab7cd3595354856e2e0214150f","0x9317b8cf2b859a04deee7365c88ef020c2fe4264","CBCBCB")
+	.send({
+		from:accounts[0]
+	})
+	.on('transactionHash', async function(transactionHash){
+		//GetTransaction(transactionHash)
+		console.log("----------------- transactionHash");
+		console.log(transactionHash);
+	})
+	.on('error', function(error){
+		console.log("---------------- error")
+		console.log(error)
+	})
+}
+
+async function GetTransaction(transactionHash)
+{
+	await window.web3.eth.getTransactionReceipt(transactionHash, function(error, result) { 
+		console.log(error);
+		console.log(result);
+		if (result && result.blockNumber) {
+			console.log(result.value);
+		}
+		else {
+			console.log('Not confirmed');
+			setTimeout(() => {GetTransaction(transactionHash)}, 1000);
+		}
+	});
+}
+
+async function GetTransactionX()
+{
+	var transactionHash="0x6d68cb54fe313e636c744a5ea65290015b7f10513389d7889d318abb8e6c5064";
+	await window.web3.eth.getTransaction(transactionHash, async function(error, result) { 
+		console.log(error);
+		console.log(result);
+
+		var result01 = await web3.eth.call(result, result.blockNumber);
+		console.log(result01);
+		console.log(result01.substr(138));
+		
+		if(result01 && result01.substr(138)) 
+		{
+			const reason = await web3.utils.toAscii(result01.substr(138))
+			console.log('Revert reason:', reason)
+		} else {
+			console.log('Cannot get reason - No return value')
+		}
+	});
+}
+
+</script>
+
+</head>
+
+<body onload="BodyOnLoad()">
+
+	<button type="button" onclick="CallMethod01()">CallMethod</button>
+	
+</body>
+
+<script src="../kriya/public/assets/js/web3.min.js"></script>
+<script src="../kriya/public/assets/abi/DocflowABI.json"></script>
+
+</html>

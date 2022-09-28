@@ -1,0 +1,35 @@
+{
+    "name": "Sports Tournament Trophy",
+    "description": "A digital trophy for NCU Sports Day ",
+    "artifactUri": "ipfs://QmQcRYop7CetsFyR6ZCurh7ee3gnFLx574JtANrn8VDy5p",
+    "displayUri": "ipfs://QmQcRYop7CetsFyR6ZCurh7ee3gnFLx574JtANrn8VDy5p",
+    "thumbnailUri": "ipfs://QmQcRYop7CetsFyR6ZCurh7ee3gnFLx574JtANrn8VDy5p",
+    "decimals": 0,
+    "attributes": [
+      {
+        "name": "Student Name",
+        "value": "Saran"
+      },
+      {
+        "name": "Event Name",
+        "value": "Sports Day"
+      }
+      ,
+      {
+        "name": "Sport",
+        "value": "Basketball"
+      }
+      ,
+      {
+        "name": "Position",
+        "value": "Winner"
+      }
+    ],
+    "creators": [
+      "tz1dad7vnNGRRxBukQBQ7NCXxXeacwaAabFm"
+    ],
+    "isBooleanAmount": false,
+    "symbol": "TROPH",
+    "rights": "All right reserved.",
+    "shouldPreferSymbol": true
+  }

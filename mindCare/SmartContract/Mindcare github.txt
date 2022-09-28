@@ -1,0 +1,55 @@
+pragma solidity ^0.8.7;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+
+contract MindcareToken is ERC20 {
+
+	constructor() ERC20("MindcareToken", "MCT") {
+		_mint(msg.sender, 10000000 * 10 ** 18);
+	}
+
+	using SafeMath for uint256;
+	uint8 private _decimals=18;
+	uint256 _tokensperphr=1;
+
+	struct order {
+		address buyer;
+		address seller;
+		string orderhash;
+		uint256 ordervalue;
+		uint orderdate;
+		uint expirydate;
+		string ordertype;
+	}
+	
+	event OrderPlaced(string orderid, address indexed buyer);
+
+	mapping(string => order) internal orders;
+
+	function buyservice(string memory orderid, string memory orderhash, uint256 ordervalue, address seller, uint orderdate, uint expirydate) public returns (bool){
+		uint256 _ordervalue = ordervalue.mul(10**_decimals);
+		require(balanceOf(msg.sender) >= _ordervalue, "Do NOT have enough  MindcareTokens");
+		approve(msg.sender, _ordervalue);
+		transferFrom(msg.sender, seller, _ordervalue);
+		orders[orderid] = order(msg.sender, seller, orderhash, _ordervalue, orderdate, expirydate, "gen");
+		emit OrderPlaced(orderid, msg.sender);
+		return true;
+	}	
+
+	
+
+    function getOrder(string memory orderid) public view returns (order memory){
+        return (orders[orderid]);
+    }
+
+    function checkOrder(string memory orderid) public view returns (bool){
+        if(orders[orderid].buyer == msg.sender)
+		{
+			return true;
+		}
+		return false;
+    }
+
+
+}

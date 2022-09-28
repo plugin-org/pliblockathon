@@ -1,0 +1,26 @@
+.swal-text
+{
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.swal-title
+{
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.swal-button
+{
+	background-color: #0b5ed7;
+}
+
+.swal-button-container
+{
+	margin:0;
+}
+
+.swal-footer
+{
+	text-align : center !important;
+}

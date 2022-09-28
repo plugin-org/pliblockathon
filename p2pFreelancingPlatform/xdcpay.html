@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XDC Pay</title>
+    <link rel="stylesheet" href="xdcpay.css">
+    <!---we had linked our css file----->
+</head>
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a href='index.html'><strong>HOME</strong></a>
+            </div>
+            
+        </div>
+        <div id='login-form'class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button type='button'onclick='login()'class='toggle-btn'><strong>  XDC PAY</strong></button>
+                    <button type='button' class='toggle-btn'><strong>   PAY EASIER</strong></button>
+                </div>
+                <form id='login' class='input-group-login'>
+                    
+                    <input type='text'class='input-field'placeholder='Contract Address' required >
+                     
+                
+		   
+		    <input type='checkbox'class='check-box'><span>Kindly make sure your wallet is connected to the site</span>
+		    <button type='submit'onclick="getAddress()"class='submit-btn'><strong>One Click Pay</strong></button>
+		        </form>
+                <form id='register' class='input-group-register'>
+                <input type='text'class='input-field'placeholder='Contract Address' required >
+                
+
+            
+            <a href="ClientProfile.html" target="blank" type="button" class="cta"><strong>LOG IN</strong></a>
+            
+                </form>
+ 
+		 
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script>
+
+var ABI = [
+
+{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "getAddress",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "to",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+async function getWeb3(){
+	console.log("web3called")
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+    } else if (window.web3) {
+      window.web3 = new Web3(
+        // new Web3.providers.HttpProvider("https://erpc.apothem.network/")
+    );
+    } else {
+      window.alert(
+        "Non-Xinfin browser detected. You should consider trying XDCpay"
+      );
+    }
+}
+getWeb3()
+
+async function addToDatabase()
+{
+    const b = window.web3;
+    console.log("b value is",b)
+    const MyContract =  await new b.eth.Contract(ABI, "0x72B063094015134A77B2a6c073553BeF07bb2f6F");
+    console.log("MyContract",MyContract);
+    const accounts = await b.eth.getAccounts();
+    console.log("accounts are",accounts)
+	//return null;
+    const amountToSend = b.utils.toWei("0.5", "ether");
+    await MyContract.methods.getAddress("").send({from:accounts[0]}, function(error, result) {
+        if(!error)
+        {
+        console.log(result);
+        }
+        else
+        {
+        console.log(error)
+        }
+    });
+}
+
+
+</script>
+    <script>
+        
+        var x=document.getElementById('login');
+		var y=document.getElementById('register');
+		var z=document.getElementById('btn');
+		function register()
+		{
+			x.style.left='-400px';
+			y.style.left='50px';
+			z.style.left='110px';
+		}
+		function login()
+		{
+			x.style.left='50px';
+			y.style.left='450px';
+			z.style.left='0px';
+		}
+	</script>
+	<script>
+        var modal = document.getElementById('login-form');
+        window.onclick = function(event) 
+        {
+            if (event.target == modal) 
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

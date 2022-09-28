@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MINDCARE</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../kriya/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../kriya/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../kriya/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+function validate()
+{
+	var Frm = document.SKForm;
+
+	if(Frm.txtMindcareTokens.value == "")
+	{
+		swal("Please enter amount of Mindcare Tokens you want to buy").then(function(){Frm.txtMindcareTokens.focus();});
+		return false;
+	}
+	else
+	{
+		var regex=/^[0-9]+$/;
+		if(!(Frm.txtMindcareTokens.value.match(regex))) 
+		{
+			swal("Invalid amount of Mindcare Tokens. Only numbers are accepted.").then(function(){Frm.txtMindcareTokens.focus();});
+			return false;
+		}
+	}
+
+	
+}
+
+function calculateXDC(MindcareTokens)
+{
+	var Frm = document.SKForm;
+	Frm.txtXDCTokens.value=(MindcareTokens/10);
+	
+}
+
+async function BodyOnLoad()
+{
+	if(window.ethereum != null) {
+		//const web3 = new Web3(window.ethereum);
+		window.web3 = new Web3(window.ethereum);
+		try {
+			await window.ethereum.enable();
+		} catch (error) {
+			alert("Web wallet not enabled.")
+		}
+	}
+}
+
+async function BuyTokens()
+{
+	var Frm = document.SKForm;
+	var XDCTokens = Frm.txtXDCTokens.value;
+
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc9ad2a65746c265bcD57238e5a2326e415a47f140");
+	const accounts = await window.web3.eth.getAccounts();
+	const amountToSend = window.web3.utils.toWei(XDCTokens, "ether");
+	await MyContract.methods.buyTokens().send({from:accounts[0], value:amountToSend}, function(error, result) {
+		if(!error)
+		{
+			var URL = "./tokenhash?hash="+result;
+			location.href=URL;
+		}
+		else
+		{
+			alert(error);
+		}
+	});
+}
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		<i class="bi bi-box"></i>
+        <span>MINDCARE</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/kriya/checkemail" onsubmit="return validate()">
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-5 col-md-5">
+					<div class="card card01 margin-top-20">
+						<div class="card-header">
+							Buy Mindcare Tokens
+						</div>
+						<div class="card-body">
+							<div class="title">
+								<h6 class="title text-center">10 Mindcare Tokens = 1 XDC</h6>
+							</div>
+
+							<div class="row mt-3">
+								<div class="col-12">
+									<label for="txtMindcareTokens" class="form-label">Enter the amount of Mindcare Tokens you want to Buy</label>
+								</div>
+								<div class="col-4">
+									<input type="text" class="form-control" id="txtMindcareTokens" name="txtMindcareTokens" value="10" onblur="calculateXDC(this.value)">
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-12">
+									<label for="txtXDCTokens" class="form-label">XDC Tokens you spend</label>
+								</div>
+								<div class="col-4">
+									<input type="text" class="form-control" id="txtXDCTokens" name="txtXDCTokens" value="1" readonly>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center top-margin-30">
+				<a class="btn btn-primary" href="./menu" role="button">Home</a> &nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-primary" onclick="BuyTokens()">Buy Tokens</button>
+			</div>
+
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MINDCARE</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../kriya/public/assets/abi/crowsaleABI.json"></script>
+  <script src="../kriya/public/assets/js/web3.min.js"></script>
+  <script src="../kriya/public/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../kriya/public/assets/vendor/aos/aos.js"></script>
+  <script src="../kriya/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../kriya/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../kriya/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../kriya/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../kriya/public/assets/js/main.js"></script>
+
+</body>
+
+</html>

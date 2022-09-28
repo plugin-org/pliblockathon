@@ -1,0 +1,16 @@
+.my_items {
+  margin: 0 20px;
+}
+.cards_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 10px;
+}
+.text {
+  font-size: 2rem;
+  color: rgb(0, 183, 255);
+  margin: 20px 0;
+}
