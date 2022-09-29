@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SecFin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link href="../SecFin/public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/vendor/gijgo/gijgo.min.css" rel="stylesheet">
+  <link href="../SecFin/public/assets/css/style.css" rel="stylesheet">
+
+<script>
+
+
+
+async function BodyOnLoad()
+{
+	if(window.ethereum != null) {
+		//const web3 = new Web3(window.ethereum);
+		window.web3 = await new Web3(window.ethereum);
+		try {
+			await window.ethereum.enable();
+			const accounts = await window.web3.eth.getAccounts();
+		} catch (error) {
+		console.log(error)
+			alert("Web wallet not enabled - 1.")
+		}
+	}
+	else
+	{
+		alert("Web wallet not enabled - 2.")
+	}
+}
+
+
+async function CreateAsset()
+{
+	var Frm = document.SKForm;
+
+	const AssetId = Frm.txtAssetId.value;
+	const ValidationStatus = Frm.txtValidationStatus.value;
+	const ValidationAmount = Frm.txtValidationAmount.value;
+	
+	console.log(AssetId);
+	console.log(ValidationStatus);
+	console.log(ValidationAmount);
+
+	MyContract = await new window.web3.eth.Contract(ABI, "xdc2bF9Be5177ab0987d10c35ae6F1DdCF28c654dc2");
+	const accounts = await window.web3.eth.getAccounts();
+
+	await MyContract.methods.ValidateAsset(AssetId, ValidationStatus, ValidationAmount).send({from:accounts[0]}, function(error, result) {
+		if(!error)
+		{
+			alert("Successfully Validated")
+		}
+		else
+		{
+			alert(error);
+		}
+	});
+
+}
+
+
+</script>
+
+</head>
+
+<body class="min-vh-100 d-flex flex-column" onload="BodyOnLoad()">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="#" class="logo d-flex align-items-center">
+		   <span>SecFin</span>
+      </a>
+  
+    </div>
+  </header><!-- End Header -->
+
+
+  <main id="main" class="margin-top-10">
+
+    <section class="inner-page">
+		<div class="container">
+		<form name="SKForm" method="post" action="/SecFin/ValidateAsset" onsubmit="return validate()">
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col-lg-5 col-md-5">
+					<div class="card card01 margin-top-20">
+						<div class="card-header">
+							Validate Asset 
+						</div>
+						<div class="card-body">
+
+							<div class="row mt-3">
+								<div class="col-12">
+									<label class="form-label">Asset Id</label>
+								</div>
+								<div class="col-12">
+									<input type="text" class="form-control" id="txtAssetId" name="txtAssetId" value="">
+								</div>
+							</div>
+
+							<div class="row mt-3">
+								<div class="col-12">
+									<label class="form-label">ValidationStatus</label>
+								</div>
+								<div class="col-12">
+									<input type="text" class="form-control" id="txtValidationStatus" name="txtValidationStatus" value="">
+								</div>
+							</div>
+
+							<div class="row mt-3">
+								<div class="col-12">
+									<label class="form-label">ValidationAmount</label>
+								</div>
+								<div class="col-12">
+									<input type="text" class="form-control" id="txtValidationAmount" name="txtValidationAmount" value="">
+								</div>
+							</div>
+
+							
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center mt-2">
+				<button type="button" class="btn btn-primary" onclick="ValidateAsset()">Validate</button>
+				<a class="btn btn-primary" href="./menu" role="button">Home</a>
+			</div>
+
+		</form>
+		</div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer mt-auto">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>SecFin</span></strong>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <script src="../SecFin/public/assets/abi/ABI.json"></script>
+  <script src="../SecFin/public/assets/js/web3.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/jquery/jquery-3.3.1.slim.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../SecFin/public/assets/vendor/aos/aos.js"></script>
+  <script src="../SecFin/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/sweetalert/sweetalert.min.js"></script>
+  <script src="../SecFin/public/assets/vendor/gijgo/gijgo.min.js" type="text/javascript"></script>
+  <script src="../SecFin/public/assets/js/main.js"></script>
+
+</body>
+
+</html>
