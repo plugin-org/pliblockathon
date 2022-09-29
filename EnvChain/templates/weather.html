@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block root %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<main id="main">
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Weather</h2>
+        <ol>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li>Weather</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="inner-page">
+    <div class="container">
+      
+      <!-- <form action="">
+        <select name="" id="">
+          <option value="trichy">Trichy</option>
+          <option value="samayapuram">Samayapuram</option>
+          <option value="KK Nagar">Srirangam</option>
+          <option value="Thillai Nagar">Edamalapatti Puthur</option>
+
+        </select>
+        <button class="form-group" type="submit">Submit</button>
+      </form> -->
+
+      <!-- <div class="mapouter"><div class="gmap_canvas"><iframe src="https://maps.google.com/maps?q=Tiruchirappalli%20&amp;t=k&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed" id="gmap_canvas" frameborder="0" scrolling="no" style="width: 930px; height: 460px;"></iframe><a href="https://fnftest.net" style="display:none">FNF Test Unblocked</a><a href="https://www.jixplay.com/indiegames/" style="display:none">indie games</a><a href="https://fnfmod.net" style="display:none">fnf mods</a><style>.mapouter{position:relative;text-align:right;height:460px;width:930px;}</style><style>.gmap_canvas{overflow:hidden;background:none!important;height:460px;width:90%;}</style></div></div> -->
+      <!-- <iframe src="https://satellites.pro/India_weather#10.795229,78.685839,12" frameborder="0" style="height: 4*00px; width: 400px;"></iframe> -->
+      <img src="{% static 'trichy.jpg' %}" usemap="#trpmap" alt="">
+      <!-- 247,46 -->
+      <style>
+        area {
+    background:#fff;
+    display:block;
+    height:475px;
+    opacity:0;
+    position:absolute;
+    width:320px;
+}
+#area2 {
+    left:320px;
+}
+#area1:hover, #area2:hover {
+    opacity:0.2;
+}
+      </style>
+      <map name="trpmap">
+        <area shape="circle" coords="247,46,25" style="color: pink;"  href="{% url 'p1' 'samayapuram' %}"  alt="Trichymap">
+        <area shape="circle" coords="173,265,25"  href="{% url 'p1' 'edamalapatti' %}" alt="Trichymap">
+        <area shape="circle" coords="192,138,25"  href="{% url 'p1' 'srirangam' %}" alt="Trichymap">
+      </map>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+<script>
+
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+{% endblock %}
